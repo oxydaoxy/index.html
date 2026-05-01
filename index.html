@@ -4,617 +4,1005 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TSB Script Hub – Best Free The Strongest Battlegrounds Script</title>
-<meta name="description" content="The best free The Strongest Battlegrounds script hub. Powerful, updated, and always free. Get the best TSB script loader now.">
+<meta name="description" content="The best free The Strongest Battlegrounds script hub. Powerful, updated, and always free.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --bg: #050507;
-    --surface: #0d0d12;
-    --surface2: #13131a;
-    --border: rgba(255,255,255,0.07);
-    --red: #ff2244;
-    --red2: #ff5566;
-    --orange: #ff7733;
-    --glow: rgba(255,34,68,0.35);
-    --glow2: rgba(255,119,51,0.2);
-    --text: #f0f0f0;
-    --muted: #888;
-    --discord: #5865F2;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Syne', sans-serif;
-    overflow-x: hidden;
-    cursor: default;
-  }
-
-  /* NOISE OVERLAY */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.4;
-  }
-
-  /* HERO */
-  .hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 6rem 2rem 4rem;
-    overflow: hidden;
-  }
-
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,34,68,0.18) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 40% at 80% 80%, rgba(255,119,51,0.1) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 50% at 20% 60%, rgba(255,34,68,0.07) 0%, transparent 60%);
-  }
-
-  .hero-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(255,34,68,0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,34,68,0.05) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 30%, transparent 80%);
-  }
-
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255,34,68,0.12);
-    border: 1px solid rgba(255,34,68,0.3);
-    border-radius: 100px;
-    padding: 6px 18px;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--red2);
-    margin-bottom: 2rem;
-    animation: fadeDown 0.6s ease both;
-  }
-
-  .badge::before {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--red);
-    box-shadow: 0 0 8px var(--red);
-    animation: pulse 1.5s ease infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.4); }
-  }
-
-  .hero-eyebrow {
-    font-size: clamp(0.7rem, 1.5vw, 0.85rem);
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--red2);
-    margin-bottom: 1.2rem;
-    font-weight: 700;
-    animation: fadeDown 0.7s 0.1s ease both;
-  }
-
-  .hero h1 {
-    font-size: clamp(2.8rem, 8vw, 6.5rem);
-    font-weight: 800;
-    line-height: 0.95;
-    letter-spacing: -0.03em;
-    margin-bottom: 1.5rem;
-    animation: fadeDown 0.7s 0.2s ease both;
-  }
-
-  .hero h1 .line1 { display: block; color: #fff; }
-  .hero h1 .line2 {
-    display: block;
-    background: linear-gradient(90deg, var(--red), var(--orange));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 30px rgba(255,34,68,0.5));
-  }
-
-  .hero-subs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 3rem;
-    animation: fadeDown 0.7s 0.35s ease both;
-  }
-
-  .hero-sub {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 6px 14px;
-    font-size: 0.78rem;
-    color: var(--muted);
-    font-family: 'Space Mono', monospace;
-  }
-
-  .hero-cta {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    justify-content: center;
-    animation: fadeDown 0.7s 0.45s ease both;
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 32px;
-    border-radius: 10px;
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .btn:hover { transform: translateY(-2px); }
-
-  .btn-primary {
-    background: linear-gradient(135deg, var(--red), var(--orange));
-    color: #fff;
-    box-shadow: 0 4px 24px rgba(255,34,68,0.4);
-  }
-  .btn-primary:hover { box-shadow: 0 8px 32px rgba(255,34,68,0.6); }
-
-  .btn-outline {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border);
-  }
-  .btn-outline:hover { border-color: rgba(255,255,255,0.2); background: var(--surface); }
-
-  .scroll-line {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    color: var(--muted);
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    animation: fadeDown 1s 0.8s ease both;
-  }
-
-  .scroll-line span {
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, var(--red), transparent);
-    animation: scrollPulse 1.5s ease infinite;
-  }
-
-  @keyframes scrollPulse {
-    0%, 100% { opacity: 1; transform: scaleY(1); }
-    50% { opacity: 0.3; transform: scaleY(0.5); }
-  }
-
-  /* SECTION SHARED */
-  section { padding: 6rem 2rem; }
-
-  .container { max-width: 1100px; margin: 0 auto; }
-
-  .section-label {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--red2);
-    margin-bottom: 0.8rem;
-  }
-
-  .section-title {
-    font-size: clamp(1.8rem, 4vw, 3rem);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin-bottom: 1rem;
-  }
-
-  .section-desc {
-    color: var(--muted);
-    font-size: 1rem;
-    max-width: 540px;
-    line-height: 1.7;
-  }
-
-  /* DIVIDER */
-  .divider {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border), transparent);
-  }
-
-  /* DISCORD SECTION */
-  .discord-section {
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .discord-card {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0d1b2a 100%);
-    border: 1px solid rgba(88,101,242,0.3);
-    border-radius: 20px;
-    padding: 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .discord-card::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -10%;
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(88,101,242,0.15) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .discord-icon {
-    font-size: 4rem;
-    line-height: 1;
-    margin-bottom: 1rem;
-  }
-
-  .discord-card h2 {
-    font-size: clamp(1.5rem, 3vw, 2.2rem);
-    font-weight: 800;
-    margin-bottom: 0.6rem;
-  }
-
-  .discord-card p {
-    color: #aab0d0;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    max-width: 420px;
-  }
-
-  .discord-stats {
-    display: flex;
-    gap: 2rem;
-    margin-top: 1.5rem;
-  }
-
-  .discord-stat { text-align: center; }
-  .discord-stat strong { display: block; font-size: 1.4rem; font-weight: 800; color: #fff; }
-  .discord-stat span { font-size: 0.72rem; color: #6b73a0; text-transform: uppercase; letter-spacing: 0.1em; }
-
-  .btn-discord {
-    background: var(--discord);
-    color: #fff;
-    box-shadow: 0 4px 24px rgba(88,101,242,0.4);
-    white-space: nowrap;
-    flex-shrink: 0;
-    font-size: 1rem;
-    padding: 16px 36px;
-  }
-  .btn-discord:hover { box-shadow: 0 8px 36px rgba(88,101,242,0.6); background: #6875f5; }
-
-  /* LOADER SECTION */
-  .loader-section { position: relative; overflow: hidden; }
-
-  .loader-section::before {
-    content: '';
-    position: absolute;
-    left: -20%;
-    top: 20%;
-    width: 500px; height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,34,68,0.06) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .loader-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    margin-top: 2.5rem;
-    box-shadow: 0 0 60px rgba(255,34,68,0.08), 0 0 0 1px rgba(255,34,68,0.05);
-  }
-
-  .loader-topbar {
-    background: var(--surface2);
-    padding: 14px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .loader-dots { display: flex; gap: 7px; }
-  .loader-dots span {
-    width: 12px; height: 12px;
-    border-radius: 50%;
-    background: var(--border);
-  }
-  .loader-dots span:nth-child(1) { background: #ff5f57; }
-  .loader-dots span:nth-child(2) { background: #febc2e; }
-  .loader-dots span:nth-child(3) { background: #28c840; }
-
-  .loader-filename {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--muted);
-  }
-
-  .copy-btn {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    background: rgba(255,34,68,0.12);
-    border: 1px solid rgba(255,34,68,0.25);
-    border-radius: 8px;
-    padding: 7px 16px;
-    color: var(--red2);
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.78rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    letter-spacing: 0.05em;
-  }
-
-  .copy-btn:hover {
-    background: rgba(255,34,68,0.2);
-    border-color: rgba(255,34,68,0.5);
-    transform: translateY(-1px);
-  }
-
-  .copy-btn.copied {
-    background: rgba(40,200,100,0.15);
-    border-color: rgba(40,200,100,0.4);
-    color: #4dde8f;
-  }
-
-  .code-area {
-    padding: 2rem 2.5rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.9rem;
-    line-height: 1.8;
-    overflow-x: auto;
-    position: relative;
-  }
-
-  .code-area .kw { color: #ff7eb6; }
-  .code-area .fn { color: #79c0ff; }
-  .code-area .str { color: #a5d6ff; }
-  .code-area .punc { color: #888; }
-
-  .loader-footer {
-    background: var(--surface2);
-    border-top: 1px solid var(--border);
-    padding: 12px 20px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .status-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: #28c840;
-    box-shadow: 0 0 8px #28c840;
-    animation: pulse 2s ease infinite;
-  }
-
-  .loader-footer span {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--muted);
-  }
-
-  /* TEAM SECTION */
-  .team-section {
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-  }
-
-  .team-header { text-align: center; margin-bottom: 4rem; }
-
-  .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    max-width: 700px;
-    margin: 0 auto;
-  }
-
-  .team-card {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 2.5rem 2rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-  }
-
-  .team-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--red), var(--orange), transparent);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .team-card:hover {
-    border-color: rgba(255,34,68,0.25);
-    transform: translateY(-6px);
-    box-shadow: 0 20px 60px rgba(255,34,68,0.1);
-  }
-
-  .team-card:hover::before { opacity: 1; }
-
-  .avatar-wrap {
-    width: 96px; height: 96px;
-    border-radius: 50%;
-    margin: 0 auto 1.5rem;
-    position: relative;
-  }
-
-  .avatar-wrap::before {
-    content: '';
-    position: absolute;
-    inset: -3px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--red), var(--orange));
-    z-index: -1;
-  }
-
-  .avatar-wrap img {
-    width: 100%; height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--surface2);
-  }
-
-  .team-name {
-    font-size: 1.3rem;
-    font-weight: 800;
-    margin-bottom: 0.4rem;
-    letter-spacing: -0.01em;
-  }
-
-  .team-role {
-    display: inline-block;
-    background: rgba(255,34,68,0.1);
-    border: 1px solid rgba(255,34,68,0.2);
-    border-radius: 100px;
-    padding: 3px 14px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--red2);
-    margin-bottom: 1rem;
-  }
-
-  .team-desc {
-    color: var(--muted);
-    font-size: 0.88rem;
-    line-height: 1.6;
-  }
-
-  /* FOOTER */
-  footer {
-    text-align: center;
-    padding: 2.5rem;
-    border-top: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 0.78rem;
-    letter-spacing: 0.05em;
-  }
-
-  footer a { color: var(--red2); text-decoration: none; }
-  footer a:hover { text-decoration: underline; }
-
-  /* ANIMATIONS */
-  @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    .discord-card { flex-direction: column; text-align: center; }
-    .discord-card p { max-width: 100%; }
-    .discord-stats { justify-content: center; }
-    .code-area { padding: 1.5rem; font-size: 0.78rem; }
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #04040a;
+  --surface: #0a0a12;
+  --surface2: #10101a;
+  --surface3: #161622;
+  --border: rgba(255,255,255,0.06);
+  --border2: rgba(255,255,255,0.1);
+  --red: #ff1a3e;
+  --red2: #ff4d6a;
+  --orange: #ff6b2b;
+  --orange2: #ffaa55;
+  --glow: rgba(255,26,62,0.4);
+  --text: #f0eeff;
+  --muted: #777;
+  --muted2: #555;
+  --discord: #5865F2;
+  --font: 'Syne', sans-serif;
+  --mono: 'Space Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── CUSTOM CURSOR ── */
+#cursor-dot {
+  position: fixed;
+  width: 8px; height: 8px;
+  background: var(--red);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%,-50%);
+  transition: width .15s, height .15s, background .2s;
+  box-shadow: 0 0 10px var(--red), 0 0 20px rgba(255,26,62,.4);
+}
+#cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1.5px solid rgba(255,26,62,.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%,-50%);
+  transition: width .3s, height .3s, border-color .3s;
+}
+body:has(a:hover) #cursor-dot,
+body:has(button:hover) #cursor-dot { width: 12px; height: 12px; }
+body:has(a:hover) #cursor-ring,
+body:has(button:hover) #cursor-ring { width: 52px; height: 52px; border-color: rgba(255,26,62,.8); }
+
+/* ── TRAIL CANVAS ── */
+#trail-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99997;
+}
+
+/* ── NOISE ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9990;
+  opacity: .45;
+}
+
+/* ── ANNOUNCEMENT BANNER ── */
+#announcement-bar {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 9000;
+  background: linear-gradient(90deg, #1a0610, #200816, #1a0610);
+  border-bottom: 1px solid rgba(255,26,62,.35);
+  padding: 0;
+  animation: slideDown .4s ease both;
+}
+#announcement-bar.show { display: flex; }
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.ann-inner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 24px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.ann-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px; height: 28px;
+  background: rgba(255,26,62,.2);
+  border: 1px solid rgba(255,26,62,.4);
+  border-radius: 6px;
+  font-size: .9rem;
+  flex-shrink: 0;
+  animation: shake 2s ease infinite;
+}
+@keyframes shake {
+  0%,90%,100% { transform: rotate(0deg); }
+  93% { transform: rotate(-8deg); }
+  96% { transform: rotate(8deg); }
+}
+.ann-text {
+  flex: 1;
+  font-size: .82rem;
+  color: #ffccd5;
+  line-height: 1.5;
+  font-weight: 600;
+  letter-spacing: .03em;
+}
+.ann-timer {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--muted);
+  flex-shrink: 0;
+  background: rgba(255,255,255,.04);
+  padding: 3px 10px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+}
+.ann-close {
+  width: 24px; height: 24px;
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: none;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: color .2s, background .2s;
+}
+.ann-close:hover { color: var(--text); background: rgba(255,255,255,.06); }
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 8000;
+  padding: 16px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .3s, background .3s;
+}
+nav.scrolled {
+  background: rgba(4,4,10,.85);
+  border-bottom-color: var(--border);
+}
+.nav-logo {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  background: linear-gradient(90deg, #fff, var(--red2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  text-decoration: none;
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-right { display: flex; align-items: center; gap: 12px; }
+.nav-admin-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,26,62,.08);
+  border: 1px solid rgba(255,26,62,.2);
+  border-radius: 8px;
+  padding: 7px 14px;
+  color: var(--red2);
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: .75rem;
+  letter-spacing: .06em;
+  cursor: none;
+  transition: all .2s;
+}
+.nav-admin-btn:hover { background: rgba(255,26,62,.15); border-color: rgba(255,26,62,.4); }
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8rem 2rem 5rem;
+  overflow: hidden;
+}
+
+.hero-ambient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% -5%, rgba(255,26,62,.2) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 40% at 85% 75%, rgba(255,107,43,.12) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 10% 60%, rgba(255,26,62,.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,26,62,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,26,62,.045) 1px, transparent 1px);
+  background-size: 55px 55px;
+  mask-image: radial-gradient(ellipse 85% 65% at 50% 0%, black 25%, transparent 80%);
+  pointer-events: none;
+}
+
+/* floating orbs */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  animation: floatOrb 8s ease-in-out infinite;
+}
+.orb1 { width: 400px; height: 400px; background: rgba(255,26,62,.09); top: -100px; left: 20%; animation-delay: 0s; }
+.orb2 { width: 300px; height: 300px; background: rgba(255,107,43,.07); bottom: 10%; right: 15%; animation-delay: -3s; }
+.orb3 { width: 200px; height: 200px; background: rgba(255,26,62,.05); top: 40%; left: -5%; animation-delay: -5s; }
+
+@keyframes floatOrb {
+  0%,100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: rgba(255,26,62,.1);
+  border: 1px solid rgba(255,26,62,.28);
+  border-radius: 100px;
+  padding: 6px 20px;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--red2);
+  margin-bottom: 2.2rem;
+  animation: fadeUp .6s ease both;
+}
+.badge-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--red);
+  box-shadow: 0 0 8px var(--red);
+  animation: pulseDot 1.6s ease infinite;
+}
+@keyframes pulseDot {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .4; transform: scale(1.6); }
+}
+
+.hero-eyebrow {
+  font-size: clamp(.7rem, 1.4vw, .82rem);
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: rgba(255,100,130,.7);
+  margin-bottom: 1.1rem;
+  font-weight: 700;
+  animation: fadeUp .7s .08s ease both;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 9vw, 7.5rem);
+  font-weight: 800;
+  line-height: .92;
+  letter-spacing: -.035em;
+  margin-bottom: 1.8rem;
+  animation: fadeUp .7s .18s ease both;
+}
+.hero h1 .l1 { display: block; color: #fff; }
+.hero h1 .l2 {
+  display: block;
+  background: linear-gradient(110deg, var(--red) 20%, var(--orange) 60%, var(--orange2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 40px rgba(255,26,62,.55));
+}
+
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 3.2rem;
+  animation: fadeUp .7s .3s ease both;
+}
+.hero-tag {
+  background: rgba(255,255,255,.03);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  padding: 5px 13px;
+  font-size: .73rem;
+  color: var(--muted);
+  font-family: var(--mono);
+  transition: border-color .3s, color .3s;
+}
+.hero-tag:hover { border-color: rgba(255,26,62,.3); color: var(--red2); }
+
+.hero-cta {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeUp .7s .42s ease both;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 14px 30px;
+  border-radius: 12px;
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: .88rem;
+  letter-spacing: .04em;
+  text-decoration: none;
+  border: none;
+  cursor: none;
+  transition: transform .2s, box-shadow .2s, background .2s;
+  position: relative;
+  overflow: hidden;
+}
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,.08);
+  opacity: 0;
+  transition: opacity .2s;
+}
+.btn:hover::after { opacity: 1; }
+.btn:hover { transform: translateY(-3px); }
+.btn-primary {
+  background: linear-gradient(135deg, var(--red) 0%, var(--orange) 100%);
+  color: #fff;
+  box-shadow: 0 4px 28px rgba(255,26,62,.45), 0 0 0 1px rgba(255,26,62,.2);
+}
+.btn-primary:hover { box-shadow: 0 10px 40px rgba(255,26,62,.65), 0 0 0 1px rgba(255,26,62,.4); }
+.btn-ghost {
+  background: rgba(255,255,255,.04);
+  color: var(--text);
+  border: 1px solid var(--border2);
+}
+.btn-ghost:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.18); }
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted2);
+  font-size: .62rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  animation: fadeUp 1s .9s ease both;
+}
+.scroll-line {
+  width: 1px; height: 44px;
+  background: linear-gradient(to bottom, var(--red), transparent);
+  animation: scrollAnim 1.8s ease infinite;
+}
+@keyframes scrollAnim {
+  0%,100% { opacity: 1; transform: scaleY(1); transform-origin: top; }
+  50% { opacity: .3; transform: scaleY(.5); transform-origin: top; }
+}
+
+/* ── STATS BAR ── */
+.stats-bar {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  padding: 2rem;
+  overflow: hidden;
+}
+.stats-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+.stat-item {
+  flex: 1;
+  text-align: center;
+  padding: 0.5rem 2rem;
+  position: relative;
+}
+.stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 20%; bottom: 20%;
+  width: 1px;
+  background: var(--border);
+}
+.stat-val {
+  display: block;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  background: linear-gradient(135deg, #fff, var(--red2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: .4rem;
+}
+.stat-lbl {
+  font-size: .68rem;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+/* ── SECTION SHARED ── */
+section { padding: 7rem 2rem; }
+.container { max-width: 1100px; margin: 0 auto; }
+.section-label {
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--red2);
+  margin-bottom: .7rem;
+}
+.section-title {
+  font-size: clamp(1.9rem, 4vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -.025em;
+  margin-bottom: 1rem;
+}
+.section-desc {
+  color: var(--muted);
+  font-size: .96rem;
+  max-width: 520px;
+  line-height: 1.75;
+}
+
+/* ── FEATURES ── */
+.features-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.features-header { margin-bottom: 3.5rem; }
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+.feat-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .3s, transform .3s, box-shadow .3s;
+}
+.feat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--red), transparent);
+  opacity: 0;
+  transition: opacity .3s;
+}
+.feat-card:hover { border-color: rgba(255,26,62,.22); transform: translateY(-5px); box-shadow: 0 16px 50px rgba(255,26,62,.09); }
+.feat-card:hover::before { opacity: 1; }
+.feat-icon {
+  width: 44px; height: 44px;
+  background: rgba(255,26,62,.1);
+  border: 1px solid rgba(255,26,62,.2);
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+.feat-title { font-size: 1rem; font-weight: 800; margin-bottom: .5rem; letter-spacing: -.01em; }
+.feat-desc { color: var(--muted); font-size: .84rem; line-height: 1.65; }
+
+/* ── DISCORD ── */
+.discord-section { position: relative; overflow: hidden; }
+.discord-card {
+  background: linear-gradient(140deg, #0d0d1e 0%, #10102a 50%, #080815 100%);
+  border: 1px solid rgba(88,101,242,.25);
+  border-radius: 24px;
+  padding: 3.5rem 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 80px rgba(88,101,242,.1);
+}
+.discord-card::before {
+  content: '';
+  position: absolute;
+  top: -30%; right: -5%;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(88,101,242,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.discord-card::after {
+  content: ''; 
+  position: absolute;
+  bottom: -20%; left: 20%;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(88,101,242,.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.discord-left h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; margin-bottom: .7rem; }
+.discord-left p { color: #9aa0cc; font-size: .94rem; line-height: 1.7; max-width: 440px; }
+.discord-stats { display: flex; gap: 2.5rem; margin-top: 2rem; }
+.d-stat strong { display: block; font-size: 1.5rem; font-weight: 800; color: #fff; }
+.d-stat span { font-size: .68rem; color: #5a6090; text-transform: uppercase; letter-spacing: .1em; }
+.btn-discord {
+  background: var(--discord);
+  color: #fff;
+  box-shadow: 0 4px 28px rgba(88,101,242,.45);
+  flex-shrink: 0;
+  font-size: .95rem;
+  padding: 16px 38px;
+}
+.btn-discord:hover { background: #6875f5; box-shadow: 0 10px 40px rgba(88,101,242,.65); }
+
+/* ── LOADER ── */
+.loader-section { position: relative; overflow: hidden; }
+.loader-section::before {
+  content: '';
+  position: absolute;
+  left: -20%; top: 10%;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,26,62,.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.loader-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  margin-top: 2.5rem;
+  box-shadow: 0 0 80px rgba(255,26,62,.06), 0 0 0 1px rgba(255,26,62,.04);
+  position: relative;
+}
+.loader-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--red), var(--orange), transparent);
+}
+.loader-top {
+  background: var(--surface2);
+  padding: 14px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+.loader-dots { display: flex; gap: 7px; }
+.loader-dots span { width: 12px; height: 12px; border-radius: 50%; }
+.loader-dots span:nth-child(1) { background: #ff5f57; }
+.loader-dots span:nth-child(2) { background: #febc2e; }
+.loader-dots span:nth-child(3) { background: #28c840; }
+.loader-name { font-family: var(--mono); font-size: .73rem; color: var(--muted); }
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,26,62,.1);
+  border: 1px solid rgba(255,26,62,.22);
+  border-radius: 8px;
+  padding: 7px 16px;
+  color: var(--red2);
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: .75rem;
+  cursor: none;
+  transition: all .2s;
+  letter-spacing: .04em;
+}
+.copy-btn:hover { background: rgba(255,26,62,.2); border-color: rgba(255,26,62,.45); }
+.copy-btn.ok { background: rgba(40,200,100,.12); border-color: rgba(40,200,100,.35); color: #4dde8f; }
+.code-area {
+  padding: 2.2rem 2.5rem;
+  font-family: var(--mono);
+  font-size: .88rem;
+  line-height: 1.85;
+  overflow-x: auto;
+}
+.kw { color: #ff7eb6; }
+.fn { color: #79c0ff; }
+.str { color: #a5d6ff; }
+.pu { color: #666; }
+.loader-foot {
+  background: var(--surface2);
+  border-top: 1px solid var(--border);
+  padding: 12px 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.status-dot { width: 8px; height: 8px; border-radius: 50%; background: #28c840; box-shadow: 0 0 8px #28c840; animation: pulseDot 2s ease infinite; }
+.loader-foot span { font-family: var(--mono); font-size: .68rem; color: var(--muted); }
+
+/* ── TEAM ── */
+.team-section { background: var(--surface); border-top: 1px solid var(--border); }
+.team-header { text-align: center; margin-bottom: 4rem; }
+.team-header .section-desc { margin: 0 auto; }
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  max-width: 820px;
+  margin: 0 auto;
+}
+.team-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all .35s;
+}
+.team-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--red), var(--orange), transparent);
+  opacity: 0;
+  transition: opacity .35s;
+}
+.team-card:hover { border-color: rgba(255,26,62,.22); transform: translateY(-8px); box-shadow: 0 24px 70px rgba(255,26,62,.1); }
+.team-card:hover::before { opacity: 1; }
+.av-wrap { width: 96px; height: 96px; border-radius: 50%; margin: 0 auto 1.5rem; position: relative; }
+.av-wrap::before {
+  content: '';
+  position: absolute; inset: -3px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--red), var(--orange));
+  z-index: -1;
+}
+.av-wrap img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid var(--surface2); }
+.t-name { font-size: 1.25rem; font-weight: 800; margin-bottom: .45rem; letter-spacing: -.01em; }
+.t-role {
+  display: inline-block;
+  background: rgba(255,26,62,.1);
+  border: 1px solid rgba(255,26,62,.2);
+  border-radius: 100px;
+  padding: 3px 14px;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--red2);
+  margin-bottom: 1rem;
+}
+.t-desc { color: var(--muted); font-size: .85rem; line-height: 1.65; }
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  padding: 2.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted2);
+  font-size: .75rem;
+  letter-spacing: .05em;
+}
+footer a { color: var(--red2); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── ADMIN MODAL ── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.8);
+  z-index: 10000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.overlay.open { display: flex; }
+.modal {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 480px;
+  position: relative;
+  box-shadow: 0 30px 100px rgba(0,0,0,.7), 0 0 0 1px rgba(255,26,62,.08);
+  animation: modalIn .3s ease both;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(.94) translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+.modal-close {
+  position: absolute;
+  top: 18px; right: 18px;
+  width: 32px; height: 32px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 1rem;
+  cursor: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s;
+}
+.modal-close:hover { background: rgba(255,26,62,.12); border-color: rgba(255,26,62,.3); color: var(--red2); }
+.modal-title { font-size: 1.4rem; font-weight: 800; margin-bottom: .4rem; letter-spacing: -.02em; }
+.modal-sub { color: var(--muted); font-size: .83rem; margin-bottom: 1.8rem; }
+.field { margin-bottom: 1.2rem; }
+.field label { display: block; font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: .55rem; }
+.field input, .field textarea {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 16px;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: .88rem;
+  transition: border-color .2s, box-shadow .2s;
+  outline: none;
+}
+.field input[type="password"] { font-family: var(--mono); letter-spacing: .1em; }
+.field input:focus, .field textarea:focus {
+  border-color: rgba(255,26,62,.4);
+  box-shadow: 0 0 0 3px rgba(255,26,62,.08);
+}
+.field textarea { resize: vertical; min-height: 80px; }
+.field-row { display: flex; gap: 10px; }
+.field-row .field { flex: 1; }
+.err-msg {
+  background: rgba(255,26,62,.1);
+  border: 1px solid rgba(255,26,62,.25);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: .8rem;
+  color: var(--red2);
+  margin-bottom: 1rem;
+  display: none;
+}
+.err-msg.show { display: block; }
+.ok-msg {
+  background: rgba(40,200,100,.1);
+  border: 1px solid rgba(40,200,100,.25);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: .8rem;
+  color: #4dde8f;
+  margin-bottom: 1rem;
+  display: none;
+}
+.ok-msg.show { display: block; }
+.modal-footer { display: flex; gap: 10px; justify-content: flex-end; margin-top: 1.5rem; }
+.btn-sm { padding: 10px 22px; font-size: .82rem; border-radius: 10px; }
+
+/* ── ADMIN PANEL ── */
+#admin-panel .modal { max-width: 640px; }
+.admin-tabs { display: flex; gap: 6px; margin-bottom: 2rem; }
+.admin-tab {
+  flex: 1;
+  padding: 9px 16px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  color: var(--muted);
+  font-family: var(--font);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  cursor: none;
+  transition: all .2s;
+  text-align: center;
+}
+.admin-tab.active { background: rgba(255,26,62,.12); border-color: rgba(255,26,62,.3); color: var(--red2); }
+.admin-tab:hover:not(.active) { border-color: var(--border2); color: var(--text); }
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.5rem; }
+.stat-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.2rem;
+  text-align: center;
+}
+.stat-card .val { font-size: 2rem; font-weight: 800; letter-spacing: -.03em; background: linear-gradient(135deg, #fff, var(--red2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.stat-card .lbl { font-size: .68rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin-top: .2rem; }
+.visits-log { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; max-height: 140px; overflow-y: auto; font-family: var(--mono); font-size: .7rem; color: var(--muted); line-height: 1.8; }
+.divider-line { height: 1px; background: var(--border); margin: 1.5rem 0; }
+
+/* responsive */
+@media (max-width: 768px) {
+  nav { padding: 14px 20px; }
+  .nav-links { display: none; }
+  .discord-card { flex-direction: column; text-align: center; padding: 2.5rem 1.8rem; }
+  .discord-left p { max-width: 100%; }
+  .discord-stats { justify-content: center; }
+  .code-area { padding: 1.4rem; font-size: .76rem; }
+  .stats-inner { flex-direction: column; gap: 1rem; }
+  .stat-item:not(:last-child)::after { display: none; }
+}
 </style>
 </head>
 <body>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
+<canvas id="trail-canvas"></canvas>
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
 
-  <div class="badge">Free Script Hub</div>
-
-  <p class="hero-eyebrow">The Strongest Battlegrounds</p>
-
-  <h1>
-    <span class="line1">Best Free</span>
-    <span class="line2">TSB Script</span>
-  </h1>
-
-  <div class="hero-subs">
-    <span class="hero-sub">✦ The Best The Strongest Battlegrounds Script Forever For Free</span>
-    <span class="hero-sub">✦ Powerful & Updated Script Loader</span>
-    <span class="hero-sub">✦ Free Script Hub For The Strongest Battlegrounds</span>
+<!-- ANNOUNCEMENT BAR -->
+<div id="announcement-bar">
+  <div class="ann-inner">
+    <div class="ann-icon">❗</div>
+    <div class="ann-text" id="ann-text">Announcement text here.</div>
+    <div class="ann-timer" id="ann-timer">--:--</div>
+    <button class="ann-close" onclick="closeAnnouncement()" title="Close">✕</button>
   </div>
+</div>
 
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">TSB Hub</div>
+  <ul class="nav-links">
+    <li><a href="#loader">Script</a></li>
+    <li><a href="#discord">Discord</a></li>
+    <li><a href="#team">Team</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="nav-admin-btn" onclick="openLogin()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Admin
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-ambient"></div>
+  <div class="hero-grid"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <div class="badge"><div class="badge-dot"></div>Free Script Hub</div>
+  <p class="hero-eyebrow">The Strongest Battlegrounds</p>
+  <h1>
+    <span class="l1">Best Free</span>
+    <span class="l2">TSB Script</span>
+  </h1>
+  <div class="hero-tags">
+    <span class="hero-tag">✦ Always Free</span>
+    <span class="hero-tag">✦ Powerful & Updated</span>
+    <span class="hero-tag">✦ All Executors</span>
+    <span class="hero-tag">✦ Anti-Ban</span>
+    <span class="hero-tag">✦ Regular Updates</span>
+  </div>
   <div class="hero-cta">
     <a href="#loader" class="btn btn-primary">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
       Get Script
     </a>
-    <a href="#discord" class="btn btn-outline">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+    <a href="#discord" class="btn btn-ghost" id="hero-discord-btn">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
       Join Discord
     </a>
   </div>
+  <div class="scroll-hint"><div class="scroll-line"></div>scroll</div>
+</section>
 
-  <div class="scroll-line">
-    <span></span>
-    scroll
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <span class="stat-val" id="visit-count-display">0</span>
+      <span class="stat-lbl">Total Visits</span>
+    </div>
+    <div class="stat-item reveal" style="transition-delay:.1s">
+      <span class="stat-val">Free</span>
+      <span class="stat-lbl">Always</span>
+    </div>
+    <div class="stat-item reveal" style="transition-delay:.2s">
+      <span class="stat-val">24/7</span>
+      <span class="stat-lbl">Support</span>
+    </div>
+    <div class="stat-item reveal" style="transition-delay:.3s">
+      <span class="stat-val" id="script-ver-display">v2.5</span>
+      <span class="stat-lbl">Version</span>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features-section">
+  <div class="container">
+    <div class="features-header reveal">
+      <p class="section-label">Features</p>
+      <h2 class="section-title">What's Inside</h2>
+      <p class="section-desc">Everything you need to dominate. Constantly updated to stay ahead of patches.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feat-card reveal">
+        <div class="feat-icon">⚡</div>
+        <div class="feat-title">Auto Farm</div>
+        <p class="feat-desc">Fully automated farming system. Level up and earn rewards while AFK with zero effort required.</p>
+      </div>
+      <div class="feat-card reveal" style="transition-delay:.1s">
+        <div class="feat-icon">🎯</div>
+        <div class="feat-title">Silent Aim</div>
+        <p class="feat-desc">Precision targeting system that works across all attacks. Never miss a hit again.</p>
+      </div>
+      <div class="feat-card reveal" style="transition-delay:.2s">
+        <div class="feat-icon">🛡️</div>
+        <div class="feat-title">Anti-Ban</div>
+        <p class="feat-desc">Advanced protection against detection. Play with confidence and peace of mind.</p>
+      </div>
+      <div class="feat-card reveal" style="transition-delay:.3s">
+        <div class="feat-icon">🔄</div>
+        <div class="feat-title">Auto Updates</div>
+        <p class="feat-desc">The loader automatically fetches the latest version. Always stay ahead of game updates.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -622,26 +1010,16 @@
 <section class="discord-section" id="discord">
   <div class="container">
     <div class="discord-card reveal">
-      <div>
-        <div class="discord-icon">💬</div>
-        <h2>Join Our Discord Server</h2>
-        <p>Get the latest script updates, support from the community, and exclusive announcements. Stay ahead with real-time notifications whenever a new version drops.</p>
+      <div class="discord-left">
+        <h2>Join Our Discord</h2>
+        <p>Get the latest script updates, community support, and exclusive announcements. Stay ahead with real-time notifications whenever a new version drops.</p>
         <div class="discord-stats">
-          <div class="discord-stat">
-            <strong>Free</strong>
-            <span>Always</span>
-          </div>
-          <div class="discord-stat">
-            <strong>24/7</strong>
-            <span>Support</span>
-          </div>
-          <div class="discord-stat">
-            <strong>Latest</strong>
-            <span>Updates</span>
-          </div>
+          <div class="d-stat"><strong>Free</strong><span>Always</span></div>
+          <div class="d-stat"><strong>24/7</strong><span>Support</span></div>
+          <div class="d-stat"><strong>Fast</strong><span>Updates</span></div>
         </div>
       </div>
-      <a href="https://discord.gg/A3ZJGfMUFP" target="_blank" rel="noopener" class="btn btn-discord">
+      <a href="https://discord.gg/A3ZJGfMUFP" target="_blank" rel="noopener" class="btn btn-discord" id="discord-link-btn">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
         Join Discord
       </a>
@@ -655,34 +1033,27 @@
     <div class="reveal">
       <p class="section-label">Script Loader</p>
       <h2 class="section-title">Main Loader</h2>
-      <p class="section-desc">Copy the script below, paste it into your executor, and execute. Works with all major executors.</p>
+      <p class="section-desc">Copy the script below, paste into your executor, and execute. Works with all major executors.</p>
     </div>
-
-    <div class="loader-box reveal" style="transition-delay:0.15s">
-      <div class="loader-topbar">
-        <div class="loader-dots">
-          <span></span><span></span><span></span>
-        </div>
-        <span class="loader-filename">oxyshub_tsb.lua</span>
+    <div class="loader-box reveal" style="transition-delay:.15s">
+      <div class="loader-top">
+        <div class="loader-dots"><span></span><span></span><span></span></div>
+        <span class="loader-name" id="script-filename">oxyshub_tsb.lua</span>
         <button class="copy-btn" id="copyBtn" onclick="copyScript()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
           <span id="copyText">Copy Script</span>
         </button>
       </div>
-
       <div class="code-area">
-        <span class="fn">loadstring</span><span class="punc">(</span><span class="fn">game</span><span class="punc">:</span><span class="fn">HttpGet</span><span class="punc">(</span><span class="str">"https://raw.githubusercontent.com/oxydaoxy/oxyshub-tsb/refs/heads/main/oxys%20hub%20tsb"</span><span class="punc">))()</span>
+        <span class="fn">loadstring</span><span class="pu">(</span><span class="fn">game</span><span class="pu">:</span><span class="fn">HttpGet</span><span class="pu">(</span><span class="str" id="script-display">"https://raw.githubusercontent.com/oxydaoxy/oxyshub-tsb/refs/heads/main/oxys%20hub%20tsb"</span><span class="pu">))()</span>
       </div>
-
-      <div class="loader-footer">
+      <div class="loader-foot">
         <div class="status-dot"></div>
-        <span>Script active · Last updated · Free forever</span>
+        <span>Script active · Free forever · <span id="last-updated-display">Last updated recently</span></span>
       </div>
     </div>
   </div>
 </section>
-
-<div class="divider"></div>
 
 <!-- TEAM -->
 <section class="team-section" id="team">
@@ -690,86 +1061,488 @@
     <div class="team-header reveal">
       <p class="section-label">Credits</p>
       <h2 class="section-title">The Creators & Helpers</h2>
-      <p class="section-desc" style="margin: 0 auto;">The people behind the script who make it possible.</p>
+      <p class="section-desc">The people behind the script who make it possible.</p>
     </div>
-
     <div class="team-grid">
-      <!-- oxyrias -->
       <div class="team-card reveal">
-        <div class="avatar-wrap">
-          <img
-            src="https://images-ext-1.discordapp.net/external/rwm0VsE-RlSRfkJJ2MnpY2hHmMbBpho_2-3eTSZsmGk/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1463312268409307166/05ba694840216029b5efdddfb403cd8d.png?format=webp&quality=lossless&width=662&height=662"
-            alt="oxyrias"
-            onerror="this.src='https://ui-avatars.com/api/?name=oxyrias&background=ff2244&color=fff&size=96&bold=true&format=png'"
-          >
+        <div class="av-wrap">
+          <img src="https://images-ext-1.discordapp.net/external/rwm0VsE-RlSRfkJJ2MnpY2hHmMbBpho_2-3eTSZsmGk/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1463312268409307166/05ba694840216029b5efdddfb403cd8d.png?format=webp&quality=lossless&width=662&height=662" alt="oxyrias" onerror="this.src='https://ui-avatars.com/api/?name=oxyrias&background=ff1a3e&color=fff&size=96&bold=true'">
         </div>
-        <div class="team-name">oxyrias</div>
-        <div class="team-role">Creator</div>
-        <p class="team-desc">The Creator Of The Script. Built and maintains the entire TSB hub from the ground up.</p>
+        <div class="t-name">oxyrias</div>
+        <div class="t-role">Creator</div>
+        <p class="t-desc">The Creator Of The Script. Built and maintains the entire TSB hub from the ground up.</p>
       </div>
-
-      <!-- virtual01 -->
-      <div class="team-card reveal" style="transition-delay:0.15s">
-        <div class="avatar-wrap">
-          <img
-            src="https://images-ext-1.discordapp.net/external/2I-6JxutC7pGbu3kvhfrXqv33RmStUma_vv4LAsbqSg/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1285373719073783889/7212306ea94b35bb8f2f4d5ea5d6b6ab.png?format=webp&quality=lossless&width=230&height=230"
-            alt="virtual01"
-            onerror="this.src='https://ui-avatars.com/api/?name=virtual01&background=ff7733&color=fff&size=96&bold=true&format=png'"
-          >
+      <div class="team-card reveal" style="transition-delay:.12s">
+        <div class="av-wrap">
+          <img src="https://images-ext-1.discordapp.net/external/2I-6JxutC7pGbu3kvhfrXqv33RmStUma_vv4LAsbqSg/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1285373719073783889/7212306ea94b35bb8f2f4d5ea5d6b6ab.png?format=webp&quality=lossless&width=230&height=230" alt="virtual01" onerror="this.src='https://ui-avatars.com/api/?name=virtual01&background=ff6b2b&color=fff&size=96&bold=true'">
         </div>
-        <div class="team-name">virtual01</div>
-        <div class="team-role">Helper</div>
-        <p class="team-desc">Helper Of The Server. Provides support and assists the community with any questions.</p>
+        <div class="t-name">virtual01</div>
+        <div class="t-role">Helper</div>
+        <p class="t-desc">Helper Of The Server. Provides support and assists the community with any questions.</p>
       </div>
-
-      <!-- HzShawde -->
-      <div class="team-card reveal" style="transition-delay:0.3s">
-        <div class="avatar-wrap">
-          <img
-            src="https://images-ext-1.discordapp.net/external/IxbI2MDfMNW92Z6JJ5Tv0ar5TP1uRDn9lZfre4lWYEA/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1257224567320215554/f03e0bc099c467f18bbe40f11b4d4d46.png?format=webp&quality=lossless&width=256&height=256"
-            alt="HzShawde"
-            onerror="this.src='https://ui-avatars.com/api/?name=HzShawde&background=ff2244&color=fff&size=96&bold=true&format=png'"
-          >
+      <div class="team-card reveal" style="transition-delay:.24s">
+        <div class="av-wrap">
+          <img src="https://images-ext-1.discordapp.net/external/IxbI2MDfMNW92Z6JJ5Tv0ar5TP1uRDn9lZfre4lWYEA/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1257224567320215554/f03e0bc099c467f18bbe40f11b4d4d46.png?format=webp&quality=lossless&width=256&height=256" alt="HzShawde" onerror="this.src='https://ui-avatars.com/api/?name=HzShawde&background=ff1a3e&color=fff&size=96&bold=true'">
         </div>
-        <div class="team-name">HzShawde</div>
-        <div class="team-role">Web Maker</div>
-        <p class="team-desc">The person who created this website.</p>
+        <div class="t-name">HzShawde</div>
+        <div class="t-role">Web Maker</div>
+        <p class="t-desc">The person who created this website.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <p>© 2025 TSB Script Hub by <a href="https://discord.gg/A3ZJGfMUFP">oxyrias</a> · Free forever · <a href="https://discord.gg/A3ZJGfMUFP">Discord</a></p>
+  <p>© 2025 TSB Script Hub by <a href="https://discord.gg/A3ZJGfMUFP" id="footer-discord-link" target="_blank">oxyrias</a> · Free forever · <a href="https://discord.gg/A3ZJGfMUFP" id="footer-discord-link2" target="_blank">Discord</a></p>
 </footer>
 
-<script>
-  const SCRIPT = `loadstring(game:HttpGet("https://raw.githubusercontent.com/oxydaoxy/oxyshub-tsb/refs/heads/main/oxys%20hub%20tsb"))()`;
+<!-- LOGIN MODAL -->
+<div class="overlay" id="login-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeLogin()">✕</button>
+    <div class="modal-title">Admin Access</div>
+    <p class="modal-sub">Enter the password to access the admin panel.</p>
+    <div class="err-msg" id="login-err">Incorrect password. Try again.</div>
+    <div class="field">
+      <label>Password</label>
+      <input type="password" id="login-pw" placeholder="••••••••••••••••" onkeydown="if(event.key==='Enter')tryLogin()">
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost btn-sm" onclick="closeLogin()">Cancel</button>
+      <button class="btn btn-primary btn-sm" onclick="tryLogin()">Login</button>
+    </div>
+  </div>
+</div>
 
-  function copyScript() {
-    navigator.clipboard.writeText(SCRIPT).then(() => {
-      const btn = document.getElementById('copyBtn');
-      const txt = document.getElementById('copyText');
-      btn.classList.add('copied');
-      txt.textContent = 'Copied!';
-      setTimeout(() => {
-        btn.classList.remove('copied');
-        txt.textContent = 'Copy Script';
-      }, 2000);
-    });
+<!-- ADMIN PANEL -->
+<div class="overlay" id="admin-panel">
+  <div class="modal" style="max-width:640px">
+    <button class="modal-close" onclick="closeAdmin()">✕</button>
+    <div class="modal-title">Admin Panel</div>
+    <p class="modal-sub">Manage your site settings.</p>
+
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="switchTab('stats')">📊 Stats</button>
+      <button class="admin-tab" onclick="switchTab('announce')">📢 Announce</button>
+      <button class="admin-tab" onclick="switchTab('links')">🔗 Links</button>
+      <button class="admin-tab" onclick="switchTab('script')">📜 Script</button>
+    </div>
+
+    <!-- STATS TAB -->
+    <div class="tab-pane active" id="tab-stats">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="val" id="admin-total-visits">0</div>
+          <div class="lbl">Total Visits</div>
+        </div>
+        <div class="stat-card">
+          <div class="val" id="admin-today-visits">0</div>
+          <div class="lbl">Today's Visits</div>
+        </div>
+        <div class="stat-card">
+          <div class="val" id="admin-script-copies">0</div>
+          <div class="lbl">Script Copies</div>
+        </div>
+        <div class="stat-card">
+          <div class="val" id="admin-version">v2.5</div>
+          <div class="lbl">Version</div>
+        </div>
+      </div>
+      <div class="section-label" style="margin-bottom:.6rem">Recent Visits</div>
+      <div class="visits-log" id="visits-log">No visits yet.</div>
+      <div class="modal-footer" style="margin-top:1rem">
+        <button class="btn btn-ghost btn-sm" onclick="clearStats()">Clear Stats</button>
+      </div>
+    </div>
+
+    <!-- ANNOUNCE TAB -->
+    <div class="tab-pane" id="tab-announce">
+      <div class="field">
+        <label>Announcement Text</label>
+        <textarea id="ann-input" placeholder="Type your announcement here..."></textarea>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Duration (minutes)</label>
+          <input type="number" id="ann-duration" value="30" min="1" max="1440">
+        </div>
+        <div class="field">
+          <label>Status</label>
+          <input type="text" id="ann-status" placeholder="e.g. Update, Maintenance" value="">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost btn-sm" onclick="removeAnnouncement()">Remove</button>
+        <button class="btn btn-primary btn-sm" onclick="publishAnnouncement()">Announce</button>
+      </div>
+    </div>
+
+    <!-- LINKS TAB -->
+    <div class="tab-pane" id="tab-links">
+      <div class="ok-msg" id="links-ok">Links saved!</div>
+      <div class="field">
+        <label>Discord Invite Link</label>
+        <input type="text" id="discord-link-input" placeholder="https://discord.gg/...">
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-sm" onclick="saveLinks()">Save Links</button>
+      </div>
+    </div>
+
+    <!-- SCRIPT TAB -->
+    <div class="tab-pane" id="tab-script">
+      <div class="ok-msg" id="script-ok">Script URL saved!</div>
+      <div class="field">
+        <label>Script URL (raw GitHub or paste link)</label>
+        <input type="text" id="script-url-input" placeholder="https://raw.githubusercontent.com/...">
+      </div>
+      <div class="field">
+        <label>Version Display</label>
+        <input type="text" id="script-version-input" placeholder="v2.5">
+      </div>
+      <div class="field">
+        <label>Last Updated Text</label>
+        <input type="text" id="script-updated-input" placeholder="e.g. May 2025">
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-sm" onclick="saveScript()">Save Script</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ── CONFIG ──
+const ADMIN_PASSWORD = "Oxy12901AdminAccess"
+const STORAGE_KEY = "tsb_admin_data"
+
+// ── STATE ──
+let DATA = loadData()
+let annTimer = null
+let annEndTime = null
+
+function loadData() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY)
+    if (raw) return JSON.parse(raw)
+  } catch(e) {}
+  return {
+    totalVisits: 0,
+    todayVisits: 0,
+    scriptCopies: 0,
+    visitLog: [],
+    lastVisitDay: "",
+    announcement: null,
+    discordLink: "https://discord.gg/A3ZJGfMUFP",
+    scriptUrl: "https://raw.githubusercontent.com/oxydaoxy/oxyshub-tsb/refs/heads/main/oxys%20hub%20tsb",
+    scriptVersion: "v2.5",
+    scriptUpdated: "Last updated recently"
+  }
+}
+
+function saveData() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(DATA))
+}
+
+// ── VISIT TRACKING ──
+;(function() {
+  const today = new Date().toDateString()
+  if (DATA.lastVisitDay !== today) {
+    DATA.todayVisits = 0
+    DATA.lastVisitDay = today
+  }
+  DATA.totalVisits++
+  DATA.todayVisits++
+  const now = new Date()
+  DATA.visitLog.unshift(`[${now.toLocaleTimeString()}] Visit #${DATA.totalVisits}`)
+  if (DATA.visitLog.length > 50) DATA.visitLog.pop()
+  saveData()
+  updateVisitDisplay()
+})()
+
+function updateVisitDisplay() {
+  const el = document.getElementById("visit-count-display")
+  animateCount(el, DATA.totalVisits)
+}
+
+function animateCount(el, target) {
+  let cur = 0
+  const step = Math.ceil(target / 60)
+  const iv = setInterval(() => {
+    cur = Math.min(cur + step, target)
+    el.textContent = cur.toLocaleString()
+    if (cur >= target) clearInterval(iv)
+  }, 16)
+}
+
+// ── APPLY SAVED SETTINGS ──
+;(function applySettings() {
+  // discord links
+  const dl = DATA.discordLink || "https://discord.gg/A3ZJGfMUFP"
+  document.querySelectorAll("[id^='discord-link'], [id^='footer-discord']").forEach(el => {
+    if (el.tagName === "A") el.href = dl
+  })
+  document.getElementById("hero-discord-btn").href = "#discord"
+
+  // script display
+  const su = DATA.scriptUrl
+  document.getElementById("script-display").textContent = `"${su}"`
+  document.getElementById("script-ver-display").textContent = DATA.scriptVersion || "v2.5"
+  document.getElementById("last-updated-display").textContent = DATA.scriptUpdated || "Last updated recently"
+
+  // announcement
+  if (DATA.announcement && DATA.announcement.endTime > Date.now()) {
+    showAnnouncement(DATA.announcement.text, DATA.announcement.endTime)
+  }
+})()
+
+// ── COPY SCRIPT ──
+function copyScript() {
+  const url = DATA.scriptUrl || "https://raw.githubusercontent.com/oxydaoxy/oxyshub-tsb/refs/heads/main/oxys%20hub%20tsb"
+  const code = `loadstring(game:HttpGet("${url}"})()`
+  navigator.clipboard.writeText(code).then(() => {
+    DATA.scriptCopies++
+    saveData()
+    const btn = document.getElementById("copyBtn")
+    const txt = document.getElementById("copyText")
+    btn.classList.add("ok")
+    txt.textContent = "Copied!"
+    setTimeout(() => { btn.classList.remove("ok"); txt.textContent = "Copy Script" }, 2000)
+  })
+}
+
+// ── ADMIN ──
+function openLogin() {
+  document.getElementById("login-pw").value = ""
+  document.getElementById("login-err").classList.remove("show")
+  document.getElementById("login-modal").classList.add("open")
+  setTimeout(() => document.getElementById("login-pw").focus(), 100)
+}
+function closeLogin() { document.getElementById("login-modal").classList.remove("open") }
+
+function tryLogin() {
+  const pw = document.getElementById("login-pw").value
+  if (pw === ADMIN_PASSWORD) {
+    closeLogin()
+    openAdmin()
+  } else {
+    document.getElementById("login-err").classList.add("show")
+    document.getElementById("login-pw").value = ""
+    document.getElementById("login-pw").focus()
+  }
+}
+
+function openAdmin() {
+  // populate fields
+  document.getElementById("admin-total-visits").textContent = DATA.totalVisits.toLocaleString()
+  document.getElementById("admin-today-visits").textContent = DATA.todayVisits.toLocaleString()
+  document.getElementById("admin-script-copies").textContent = DATA.scriptCopies.toLocaleString()
+  document.getElementById("admin-version").textContent = DATA.scriptVersion || "v2.5"
+
+  const log = document.getElementById("visits-log")
+  log.textContent = DATA.visitLog.length ? DATA.visitLog.join("\n") : "No visits yet."
+
+  document.getElementById("discord-link-input").value = DATA.discordLink || ""
+  document.getElementById("script-url-input").value = DATA.scriptUrl || ""
+  document.getElementById("script-version-input").value = DATA.scriptVersion || ""
+  document.getElementById("script-updated-input").value = DATA.scriptUpdated || ""
+
+  if (DATA.announcement) {
+    document.getElementById("ann-input").value = DATA.announcement.text || ""
+    const remaining = Math.max(0, Math.round((DATA.announcement.endTime - Date.now()) / 60000))
+    document.getElementById("ann-duration").value = remaining || 30
+    document.getElementById("ann-status").value = DATA.announcement.status || ""
   }
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.15 });
+  document.getElementById("admin-panel").classList.add("open")
+  switchTab("stats")
+}
+function closeAdmin() { document.getElementById("admin-panel").classList.remove("open") }
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+function switchTab(name) {
+  document.querySelectorAll(".admin-tab").forEach((t,i) => {
+    const tabs = ["stats","announce","links","script"]
+    t.classList.toggle("active", tabs[i] === name)
+  })
+  document.querySelectorAll(".tab-pane").forEach(p => p.classList.remove("active"))
+  document.getElementById("tab-" + name).classList.add("active")
+}
+
+function saveLinks() {
+  DATA.discordLink = document.getElementById("discord-link-input").value.trim()
+  saveData()
+
+  document.querySelectorAll("[id^='discord-link-btn'], [id^='footer-discord']").forEach(el => {
+    if (el.tagName === "A") el.href = DATA.discordLink
+  })
+
+  const ok = document.getElementById("links-ok")
+  ok.classList.add("show")
+  setTimeout(() => ok.classList.remove("show"), 2500)
+}
+
+function saveScript() {
+  DATA.scriptUrl = document.getElementById("script-url-input").value.trim()
+  DATA.scriptVersion = document.getElementById("script-version-input").value.trim()
+  DATA.scriptUpdated = document.getElementById("script-updated-input").value.trim()
+  saveData()
+
+  document.getElementById("script-display").textContent = `"${DATA.scriptUrl}"`
+  document.getElementById("script-ver-display").textContent = DATA.scriptVersion
+  document.getElementById("last-updated-display").textContent = DATA.scriptUpdated
+  document.getElementById("admin-version").textContent = DATA.scriptVersion
+
+  const ok = document.getElementById("script-ok")
+  ok.classList.add("show")
+  setTimeout(() => ok.classList.remove("show"), 2500)
+}
+
+function clearStats() {
+  if (!confirm("Clear all stats?")) return
+  DATA.totalVisits = 0
+  DATA.todayVisits = 0
+  DATA.scriptCopies = 0
+  DATA.visitLog = []
+  saveData()
+  document.getElementById("admin-total-visits").textContent = "0"
+  document.getElementById("admin-today-visits").textContent = "0"
+  document.getElementById("admin-script-copies").textContent = "0"
+  document.getElementById("visits-log").textContent = "No visits yet."
+  document.getElementById("visit-count-display").textContent = "0"
+}
+
+// ── ANNOUNCEMENT ──
+function publishAnnouncement() {
+  const text = document.getElementById("ann-input").value.trim()
+  if (!text) return
+  const mins = parseInt(document.getElementById("ann-duration").value) || 30
+  const status = document.getElementById("ann-status").value.trim()
+  const endTime = Date.now() + mins * 60 * 1000
+
+  DATA.announcement = { text, status, endTime }
+  saveData()
+  closeAdmin()
+  showAnnouncement(text, endTime)
+}
+
+function showAnnouncement(text, endTime) {
+  const bar = document.getElementById("announcement-bar")
+  document.getElementById("ann-text").textContent = text
+  bar.classList.add("show")
+
+  // offset nav
+  document.getElementById("navbar").style.top = bar.offsetHeight + "px"
+
+  if (annTimer) clearInterval(annTimer)
+  annEndTime = endTime
+
+  const update = () => {
+    const rem = annEndTime - Date.now()
+    if (rem <= 0) { closeAnnouncement(); return }
+    const m = Math.floor(rem / 60000)
+    const s = Math.floor((rem % 60000) / 1000)
+    document.getElementById("ann-timer").textContent = `${m}:${s.toString().padStart(2,"0")}`
+  }
+  update()
+  annTimer = setInterval(update, 1000)
+}
+
+function removeAnnouncement() {
+  DATA.announcement = null
+  saveData()
+  closeAnnouncement()
+}
+
+function closeAnnouncement() {
+  document.getElementById("announcement-bar").classList.remove("show")
+  document.getElementById("navbar").style.top = "0"
+  if (annTimer) { clearInterval(annTimer); annTimer = null }
+}
+
+// ── SCROLL REVEAL ──
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); obs.unobserve(e.target) } })
+}, { threshold: 0.12 })
+document.querySelectorAll(".reveal").forEach(el => obs.observe(el))
+
+// ── NAV SCROLL ──
+window.addEventListener("scroll", () => {
+  document.getElementById("navbar").classList.toggle("scrolled", scrollY > 40)
+})
+
+// ── CLOSE MODALS ON OVERLAY CLICK ──
+document.getElementById("login-modal").addEventListener("click", e => { if (e.target === e.currentTarget) closeLogin() })
+document.getElementById("admin-panel").addEventListener("click", e => { if (e.target === e.currentTarget) closeAdmin() })
+
+// ── CURSOR ──
+const DOT = document.getElementById("cursor-dot")
+const RING = document.getElementById("cursor-ring")
+let MX = 0, MY = 0
+let RX = 0, RY = 0
+
+document.addEventListener("mousemove", e => {
+  MX = e.clientX; MY = e.clientY
+  DOT.style.left = MX + "px"
+  DOT.style.top = MY + "px"
+})
+
+;(function ringLoop() {
+  RX += (MX - RX) * 0.12
+  RY += (MY - RY) * 0.12
+  RING.style.left = RX + "px"
+  RING.style.top = RY + "px"
+  requestAnimationFrame(ringLoop)
+})()
+
+// ── TRAIL ──
+const CANVAS = document.getElementById("trail-canvas")
+const CTX = CANVAS.getContext("2d")
+let W, H
+const POINTS = []
+const MAX_PTS = 28
+
+function resize() {
+  W = CANVAS.width = window.innerWidth
+  H = CANVAS.height = window.innerHeight
+}
+resize()
+window.addEventListener("resize", resize)
+
+document.addEventListener("mousemove", e => {
+  POINTS.push({ x: e.clientX, y: e.clientY, life: 1 })
+  if (POINTS.length > MAX_PTS) POINTS.shift()
+})
+
+;(function trailLoop() {
+  CTX.clearRect(0, 0, W, H)
+  for (let i = 1; i < POINTS.length; i++) {
+    const p = POINTS[i]
+    const pp = POINTS[i - 1]
+    const t = i / POINTS.length
+    const alpha = t * 0.6
+    const size = t * 3.5
+
+    CTX.beginPath()
+    CTX.moveTo(pp.x, pp.y)
+    CTX.lineTo(p.x, p.y)
+    CTX.strokeStyle = `rgba(255, ${Math.floor(26 + t * 80)}, ${Math.floor(62 + t * 20)}, ${alpha})`
+    CTX.lineWidth = size
+    CTX.lineCap = "round"
+    CTX.stroke()
+
+    // glow
+    CTX.beginPath()
+    CTX.arc(p.x, p.y, size * 1.5, 0, Math.PI * 2)
+    CTX.fillStyle = `rgba(255, 26, 62, ${alpha * 0.3})`
+    CTX.fill()
+  }
+  for (let i = POINTS.length - 1; i >= 0; i--) {
+    POINTS[i].life -= 0.04
+    if (POINTS[i].life <= 0) POINTS.splice(i, 1)
+  }
+  requestAnimationFrame(trailLoop)
+})()
 </script>
 </body>
 </html>
