@@ -166,52 +166,10 @@ nav.scrolled{background:rgba(2,2,8,.9);border-bottom:1px solid var(--bd);backdro
 footer{text-align:center;padding:2.5rem;border-top:1px solid var(--bd);color:var(--m2);font-size:.75rem;letter-spacing:.05em}
 footer a{color:var(--r2);text-decoration:none;transition:color .2s}
 footer a:hover{color:#fff}
-.dotbtn{display:inline-block;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.06);cursor:none;transition:all .35s;margin-left:8px;vertical-align:middle;border:none}
-.dotbtn:hover{background:rgba(255,26,62,.4);box-shadow:0 0 10px rgba(255,26,62,.3)}
 
 /* REVEAL */
 .rev{opacity:0;transform:translateY(30px);transition:opacity .75s ease,transform .75s ease}
 .rev.on{opacity:1;transform:none}
-
-/* OVERLAY */
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:10000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(18px)}
-.overlay.open{display:flex}
-.modal{background:var(--s2);border:1px solid var(--bd2);border-radius:22px;padding:2.6rem;width:100%;max-width:500px;position:relative;box-shadow:0 40px 120px rgba(0,0,0,.8),0 0 0 1px rgba(255,26,62,.06);animation:mI .3s ease both}
-@keyframes mI{from{opacity:0;transform:scale(.92) translateY(16px)}to{opacity:1;transform:none}}
-.mc{position:absolute;top:18px;right:18px;width:32px;height:32px;background:rgba(255,255,255,.05);border:1px solid var(--bd);border-radius:8px;color:var(--m);font-size:1rem;cursor:none;display:flex;align-items:center;justify-content:center;transition:all .2s}
-.mc:hover{background:rgba(255,26,62,.12);border-color:rgba(255,26,62,.3);color:var(--r2)}
-.mtitle{font-family:var(--FB);font-size:1.9rem;letter-spacing:.05em;margin-bottom:.3rem}
-.msub{color:var(--m);font-size:.82rem;margin-bottom:1.8rem}
-.field{margin-bottom:1.2rem}
-.field label{display:block;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--m);margin-bottom:.55rem}
-.field input,.field textarea{width:100%;background:var(--bg);border:1px solid var(--bd);border-radius:10px;padding:11px 16px;color:var(--txt);font-family:var(--F);font-size:.88rem;transition:border-color .2s,box-shadow .2s;outline:none}
-.field input[type="password"]{font-family:var(--FM);letter-spacing:.1em}
-.field input:focus,.field textarea:focus{border-color:rgba(255,26,62,.4);box-shadow:0 0 0 3px rgba(255,26,62,.07)}
-.field textarea{resize:vertical;min-height:82px}
-.frow{display:flex;gap:10px}
-.frow .field{flex:1}
-.err{background:rgba(255,26,62,.1);border:1px solid rgba(255,26,62,.25);border-radius:9px;padding:10px 14px;font-size:.8rem;color:var(--r2);margin-bottom:1rem;display:none}
-.err.on{display:block}
-.suc{background:rgba(40,200,100,.1);border:1px solid rgba(40,200,100,.25);border-radius:9px;padding:10px 14px;font-size:.8rem;color:#4dde8f;margin-bottom:1rem;display:none}
-.suc.on{display:block}
-.mf{display:flex;gap:10px;justify-content:flex-end;margin-top:1.5rem}
-.btn-sm{padding:10px 24px;font-size:.82rem;border-radius:10px}
-
-/* ADMIN */
-#ap .modal{max-width:660px}
-.atabs{display:flex;gap:6px;margin-bottom:2rem}
-.atab{flex:1;padding:9px 10px;background:var(--bg);border:1px solid var(--bd);border-radius:9px;color:var(--m);font-family:var(--F);font-size:.73rem;font-weight:700;letter-spacing:.04em;cursor:none;transition:all .2s;text-align:center}
-.atab.on{background:rgba(255,26,62,.12);border-color:rgba(255,26,62,.3);color:var(--r2)}
-.atab:hover:not(.on){border-color:var(--bd2);color:var(--txt)}
-.tp{display:none}
-.tp.on{display:block}
-.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem}
-.sc{background:var(--bg);border:1px solid var(--bd);border-radius:13px;padding:1.3rem;text-align:center}
-.sc .v{font-family:var(--FB);font-size:2.2rem;letter-spacing:.04em;background:linear-gradient(135deg,#fff,var(--r2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.sc .l{font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;color:var(--m);margin-top:.2rem}
-.vlog{background:var(--bg);border:1px solid var(--bd);border-radius:10px;padding:1rem;max-height:140px;overflow-y:auto;font-family:var(--FM);font-size:.68rem;color:var(--m);line-height:1.9}
-.ann-prev{background:rgba(255,26,62,.06);border:1px solid rgba(255,26,62,.14);border-radius:12px;padding:13px 18px;margin-bottom:1rem;font-size:.82rem;color:rgba(255,255,255,.55);font-style:italic}
-.ann-prev strong{color:var(--r2)}
 
 @media(max-width:768px){
   nav{padding:14px 20px}
@@ -282,34 +240,34 @@ footer a:hover{color:#fff}
 
 <div class="divl"></div>
 
-<!-- FEATURES -->
+<!-- INFO -->
 <section class="feat-s sec">
   <div class="container">
     <div class="rev">
-      <p class="sl">Features</p>
-      <h2 class="st">What's Inside</h2>
-      <p class="sd">Everything you need to dominate. Constantly updated to stay ahead of patches.</p>
+      <p class="sl">Info</p>
+      <h2 class="st">Info</h2>
+      <p class="sd">Everything you need to know about the hub before you use it.</p>
     </div>
     <div class="fg">
       <div class="fc rev" style="transition-delay:.05s">
-        <div class="fi">🎯</div>
-        <div class="ft">Silent Aim</div>
-        <p class="fd">Precision targeting system. Works seamlessly across all attacks and abilities.</p>
+        <div class="fi">🎮</div>
+        <div class="ft">All Executors Supported</div>
+        <p class="fd">Works with every major executor — Synapse X, KRNL, Fluxus, Delta, Codex, Arceus X, Wave and more. Just paste and run, no extra setup needed.</p>
       </div>
       <div class="fc rev" style="transition-delay:.12s">
-        <div class="fi">🛡️</div>
-        <div class="ft">Anti-Ban</div>
-        <p class="fd">Advanced detection avoidance. Play freely without worrying about getting caught.</p>
+        <div class="fi">📱</div>
+        <div class="ft">Mobile & PC Support</div>
+        <p class="fd">Fully compatible on both mobile and PC. Whether you're on Android with a mobile executor or on desktop, the hub runs perfectly on both platforms.</p>
       </div>
       <div class="fc rev" style="transition-delay:.19s">
-        <div class="fi">🔄</div>
-        <div class="ft">Auto Updates</div>
-        <p class="fd">Loader fetches the latest version automatically. Always stay ahead.</p>
+        <div class="fi">💸</div>
+        <div class="ft">Completely Free</div>
+        <p class="fd">No keys, no paywalls, no premium tiers. The entire hub and all its features are 100% free forever. No strings attached.</p>
       </div>
       <div class="fc rev" style="transition-delay:.26s">
-        <div class="fi">🎮</div>
-        <div class="ft">All Executors</div>
-        <p class="fd">Compatible with every major executor. Just paste and run, no special setup.</p>
+        <div class="fi">✅</div>
+        <div class="ft">Legit & Safe</div>
+        <p class="fd">Clean, safe script with no malicious code. Community trusted and transparent. You can inspect every line yourself before running it.</p>
       </div>
     </div>
   </div>
@@ -399,199 +357,20 @@ footer a:hover{color:#fff}
 </section>
 
 <footer>
-  <p>© 2025 TSB Script Hub by <a href="https://discord.gg/A3ZJGfMUFP" target="_blank">oxyrias</a> · Free forever · <a href="https://discord.gg/A3ZJGfMUFP" target="_blank">Discord</a><button class="dotbtn" id="dbtn" onclick="openLogin()" title=""></button></p>
+  <p>© 2025 TSB Script Hub by <a href="https://discord.gg/A3ZJGfMUFP" target="_blank">oxyrias</a> · Free forever · <a href="https://discord.gg/A3ZJGfMUFP" target="_blank">Discord</a></p>
 </footer>
 
-<!-- LOGIN -->
-<div class="overlay" id="lm">
-  <div class="modal">
-    <button class="mc" onclick="closeLogin()">✕</button>
-    <div class="mtitle">🔒</div>
-    <p class="msub">Enter password to continue.</p>
-    <div class="err" id="lerr">Incorrect password.</div>
-    <div class="field">
-      <label>Password</label>
-      <input type="password" id="lpw" placeholder="••••••••••••••••" onkeydown="if(event.key==='Enter')tryLogin()">
-    </div>
-    <div class="mf">
-      <button class="btn btn-g btn-sm" onclick="closeLogin()">Cancel</button>
-      <button class="btn btn-p btn-sm" onclick="tryLogin()">Continue</button>
-    </div>
-  </div>
-</div>
-
-<!-- ADMIN PANEL -->
-<div class="overlay" id="ap">
-  <div class="modal" style="max-width:660px">
-    <button class="mc" onclick="closeAdmin()">✕</button>
-    <div class="mtitle">Admin Panel</div>
-    <p class="msub">Manage your site settings.</p>
-    <div class="atabs">
-      <button class="atab on" onclick="aTab('stats')">📊 Stats</button>
-      <button class="atab" onclick="aTab('ann')">📢 Announce</button>
-      <button class="atab" onclick="aTab('links')">🔗 Links</button>
-      <button class="atab" onclick="aTab('script')">📜 Script</button>
-    </div>
-
-    <div class="tp on" id="tp-stats">
-      <div class="sgrid">
-        <div class="sc"><div class="v" id="av1">0</div><div class="l">Script Copies</div></div>
-        <div class="sc"><div class="v" id="av2">v1.4</div><div class="l">Version</div></div>
-      </div>
-      <div class="field" style="margin-bottom:.5rem"><label>Copy Log</label></div>
-      <div class="vlog" id="vlog">No copies yet.</div>
-      <div class="mf" style="margin-top:1rem">
-        <button class="btn btn-g btn-sm" onclick="clearStats()">Clear Stats</button>
-      </div>
-    </div>
-
-    <div class="tp" id="tp-ann">
-      <div class="ann-prev" id="ann-prev-box"><strong>Preview:</strong> Your announcement will appear here.</div>
-      <div class="field">
-        <label>Announcement Message</label>
-        <textarea id="ann-inp" placeholder="e.g. Script updated to v1.5! New features added." oninput="updatePrev()"></textarea>
-      </div>
-      <div class="frow">
-        <div class="field"><label>Duration (minutes)</label><input type="number" id="ann-dur" value="30" min="1" max="1440"></div>
-        <div class="field"><label>Label</label><input type="text" id="ann-lbl" placeholder="Update, News…"></div>
-      </div>
-      <div class="mf">
-        <button class="btn btn-g btn-sm" onclick="removeAnn()">Remove</button>
-        <button class="btn btn-p btn-sm" onclick="publishAnn()">Publish</button>
-      </div>
-    </div>
-
-    <div class="tp" id="tp-links">
-      <div class="suc" id="lok">Links saved!</div>
-      <div class="field"><label>Discord Invite Link</label><input type="text" id="dinput" placeholder="https://discord.gg/..."></div>
-      <div class="mf"><button class="btn btn-p btn-sm" onclick="saveLinks()">Save</button></div>
-    </div>
-
-    <div class="tp" id="tp-script">
-      <div class="suc" id="sok">Saved!</div>
-      <div class="field"><label>Script URL</label><input type="text" id="surl" placeholder="https://raw.githubusercontent.com/..."></div>
-      <div class="frow">
-        <div class="field"><label>Version</label><input type="text" id="sver" placeholder="v1.4"></div>
-        <div class="field"><label>Last Updated</label><input type="text" id="supdinp" placeholder="May 2025"></div>
-      </div>
-      <div class="mf"><button class="btn btn-p btn-sm" onclick="saveScript()">Save</button></div>
-    </div>
-  </div>
-</div>
-
 <script>
-const PASS="Oxy12901AdminAccess",SK="tsbhub_v3"
-let D=(()=>{try{const r=localStorage.getItem(SK);if(r)return JSON.parse(r)}catch(e){}return{copies:0,copyLog:[],ann:null,discord:"https://discord.gg/A3ZJGfMUFP",scriptUrl:"https://raw.githubusercontent.com/oxydaoxy/oxyshub-tsb/refs/heads/main/oxys%20hub%20tsb",ver:"v1.4",updated:"Last updated recently"}})()
-const save=()=>localStorage.setItem(SK,JSON.stringify(D))
-
-;(()=>{
-  document.getElementById("sdisplay").textContent=`"${D.scriptUrl}"`
-  document.getElementById("sverel").textContent=D.ver
-  document.getElementById("supd").textContent=D.updated
-  document.getElementById("dlink").href=D.discord
-  if(D.ann&&D.ann.end>Date.now())showAnn(D.ann.msg,D.ann.end)
-})()
+const SCRIPT_URL="https://raw.githubusercontent.com/oxydaoxy/oxyshub-tsb/refs/heads/main/oxys%20hub%20tsb"
 
 function copyScript(){
-  navigator.clipboard.writeText(`loadstring(game:HttpGet("${D.scriptUrl}"))()`).then(()=>{
-    D.copies++
-    const t=new Date()
-    D.copyLog.unshift(`[${t.toLocaleTimeString()}] Copy #${D.copies}`)
-    if(D.copyLog.length>50)D.copyLog.pop()
-    save()
-    const btn=document.getElementById("cbtn"),txt=document.getElementById("ctxt")
-    btn.classList.add("ok");txt.textContent="Copied!"
-    setTimeout(()=>{btn.classList.remove("ok");txt.textContent="Copy Script"},2200)
-  })
-}
-
-function openLogin(){
-  document.getElementById("lpw").value=""
-  document.getElementById("lerr").classList.remove("on")
-  document.getElementById("lm").classList.add("open")
-  setTimeout(()=>document.getElementById("lpw").focus(),120)
-}
-function closeLogin(){document.getElementById("lm").classList.remove("open")}
-function tryLogin(){
-  if(document.getElementById("lpw").value===PASS){closeLogin();openAdmin()}
-  else{document.getElementById("lerr").classList.add("on");document.getElementById("lpw").value="";document.getElementById("lpw").focus()}
-}
-
-function openAdmin(){
-  document.getElementById("av1").textContent=D.copies
-  document.getElementById("av2").textContent=D.ver
-  document.getElementById("vlog").textContent=D.copyLog.length?D.copyLog.join("\n"):"No copies yet."
-  document.getElementById("dinput").value=D.discord
-  document.getElementById("surl").value=D.scriptUrl
-  document.getElementById("sver").value=D.ver
-  document.getElementById("supdinp").value=D.updated
-  if(D.ann){document.getElementById("ann-inp").value=D.ann.msg||"";document.getElementById("ann-dur").value=Math.max(1,Math.round((D.ann.end-Date.now())/60000));document.getElementById("ann-lbl").value=D.ann.lbl||"";updatePrev()}
-  document.getElementById("ap").classList.add("open")
-  aTab("stats")
-}
-function closeAdmin(){document.getElementById("ap").classList.remove("open")}
-
-function aTab(n){
-  const ns=["stats","ann","links","script"]
-  document.querySelectorAll(".atab").forEach((t,i)=>t.classList.toggle("on",ns[i]===n))
-  document.querySelectorAll(".tp").forEach(p=>p.classList.remove("on"))
-  document.getElementById("tp-"+n).classList.add("on")
-}
-
-function saveLinks(){
-  D.discord=document.getElementById("dinput").value.trim();save()
-  document.getElementById("dlink").href=D.discord
-  const ok=document.getElementById("lok");ok.classList.add("on");setTimeout(()=>ok.classList.remove("on"),2500)
-}
-
-function saveScript(){
-  D.scriptUrl=document.getElementById("surl").value.trim()
-  D.ver=document.getElementById("sver").value.trim()
-  D.updated=document.getElementById("supdinp").value.trim()
-  save()
-  document.getElementById("sdisplay").textContent=`"${D.scriptUrl}"`
-  document.getElementById("sverel").textContent=D.ver
-  document.getElementById("supd").textContent=D.updated
-  document.getElementById("av2").textContent=D.ver
-  const ok=document.getElementById("sok");ok.classList.add("on");setTimeout(()=>ok.classList.remove("on"),2500)
-}
-
-function clearStats(){
-  if(!confirm("Clear all stats?"))return
-  D.copies=0;D.copyLog=[];save()
-  document.getElementById("av1").textContent="0"
-  document.getElementById("vlog").textContent="No copies yet."
-}
-
-function updatePrev(){
-  const t=document.getElementById("ann-inp").value.trim()
-  document.getElementById("ann-prev-box").innerHTML=`<strong>Preview:</strong> ${t||"Your announcement will appear here."}`
+  navigator.clipboard.writeText(`loadstring(game:HttpGet("${SCRIPT_URL}"))()`)
+  const btn=document.getElementById("cbtn"),txt=document.getElementById("ctxt")
+  btn.classList.add("ok");txt.textContent="Copied!"
+  setTimeout(()=>{btn.classList.remove("ok");txt.textContent="Copy Script"},2200)
 }
 
 let annIv=null
-function publishAnn(){
-  const msg=document.getElementById("ann-inp").value.trim()
-  if(!msg)return
-  const mins=parseInt(document.getElementById("ann-dur").value)||30
-  const lbl=document.getElementById("ann-lbl").value.trim()
-  const end=Date.now()+mins*60*1000
-  D.ann={msg,lbl,end};save();closeAdmin();showAnn(msg,end)
-}
-function showAnn(msg,end){
-  const bar=document.getElementById("ann")
-  document.getElementById("ann-txt").textContent=msg
-  bar.classList.add("on")
-  document.getElementById("nav").style.top=bar.offsetHeight+"px"
-  if(annIv)clearInterval(annIv)
-  const upd=()=>{
-    const r=end-Date.now()
-    if(r<=0){closeAnn();return}
-    const m=Math.floor(r/60000),s=Math.floor((r%60000)/1000)
-    document.getElementById("ann-timer").textContent=`${m}:${s.toString().padStart(2,"0")}`
-  }
-  upd();annIv=setInterval(upd,1000)
-}
-function removeAnn(){D.ann=null;save();closeAnn()}
 function closeAnn(){
   document.getElementById("ann").classList.remove("on")
   document.getElementById("nav").style.top="0"
@@ -605,9 +384,6 @@ const obs=new IntersectionObserver(entries=>{
 document.querySelectorAll(".rev").forEach(el=>obs.observe(el))
 
 window.addEventListener("scroll",()=>document.getElementById("nav").classList.toggle("scrolled",scrollY>50))
-
-document.getElementById("lm").addEventListener("click",e=>{if(e.target===e.currentTarget)closeLogin()})
-document.getElementById("ap").addEventListener("click",e=>{if(e.target===e.currentTarget)closeAdmin()})
 
 // CURSOR
 const CX=document.getElementById("cx"),CR=document.getElementById("cr")
