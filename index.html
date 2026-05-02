@@ -18,7 +18,6 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--txt);font-family:var(--F);overflow-x:hidden;cursor:none;line-height:1.6}
 
-/* CURSOR */
 #cx{position:fixed;width:10px;height:10px;background:var(--r);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .12s,height .12s,background .15s;box-shadow:0 0 16px var(--r),0 0 32px rgba(255,26,62,.25)}
 #cr{position:fixed;width:42px;height:42px;border:1.5px solid rgba(255,26,62,.38);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .28s cubic-bezier(.23,1,.32,1),height .28s cubic-bezier(.23,1,.32,1),border-color .25s}
 body:has(a:hover) #cx,body:has(button:hover) #cx{width:16px;height:16px;background:#fff;box-shadow:0 0 20px rgba(255,255,255,.5)}
@@ -26,10 +25,8 @@ body:has(a:hover) #cr,body:has(button:hover) #cr{width:62px;height:62px;border-c
 #tc{position:fixed;inset:0;pointer-events:none;z-index:99997}
 #pc{position:fixed;inset:0;pointer-events:none;z-index:1}
 
-/* NOISE OVERLAY */
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9990;opacity:.5}
 
-/* ANNOUNCEMENT */
 #ann{display:none;position:fixed;top:0;left:0;right:0;z-index:9500;animation:sD .4s ease both}
 #ann.on{display:flex}
 @keyframes sD{from{transform:translateY(-100%);opacity:0}to{transform:none;opacity:1}}
@@ -41,7 +38,6 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .ann-x{width:26px;height:26px;background:none;border:none;color:var(--m);cursor:none;font-size:1rem;flex-shrink:0;border-radius:5px;transition:color .2s,background .2s;display:flex;align-items:center;justify-content:center}
 .ann-x:hover{color:var(--txt);background:rgba(255,255,255,.07)}
 
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:8000;padding:20px 56px;display:flex;align-items:center;justify-content:space-between;transition:all .4s}
 nav.scrolled{background:rgba(2,2,8,.9);border-bottom:1px solid var(--bd);backdrop-filter:blur(28px)}
 .nl{font-family:var(--FB);font-size:1.55rem;letter-spacing:.12em;background:linear-gradient(90deg,#fff 30%,var(--r2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -50,7 +46,6 @@ nav.scrolled{background:rgba(2,2,8,.9);border-bottom:1px solid var(--bd);backdro
 .nlinks a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--r),var(--o));transform:scaleX(0);transition:transform .3s cubic-bezier(.23,1,.32,1);transform-origin:left}
 .nlinks a:hover{color:var(--txt)}.nlinks a:hover::after{transform:scaleX(1)}
 
-/* HERO */
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:9rem 2rem 6rem;overflow:hidden;z-index:2}
 .h-amb{position:absolute;inset:0;background:radial-gradient(ellipse 100% 65% at 50% -15%,rgba(255,26,62,.2) 0%,transparent 65%),radial-gradient(ellipse 55% 55% at 92% 82%,rgba(255,107,43,.09) 0%,transparent 58%),radial-gradient(ellipse 60% 50% at 3% 55%,rgba(255,26,62,.05) 0%,transparent 60%);pointer-events:none}
 .h-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,26,62,.042) 1px,transparent 1px),linear-gradient(90deg,rgba(255,26,62,.042) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 90% 72% at 50% 0%,black 15%,transparent 80%);pointer-events:none}
@@ -76,7 +71,6 @@ nav.scrolled{background:rgba(2,2,8,.9);border-bottom:1px solid var(--bd);backdro
 .h-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fU .7s .4s ease both}
 @keyframes fU{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 
-/* BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:10px;padding:15px 34px;border-radius:14px;font-family:var(--F);font-weight:700;font-size:.9rem;letter-spacing:.04em;text-decoration:none;border:none;cursor:none;transition:transform .25s cubic-bezier(.23,1,.32,1),box-shadow .25s;position:relative;overflow:hidden}
 .btn::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.08);opacity:0;transition:opacity .2s}
 .btn:hover::before{opacity:1}
@@ -87,12 +81,12 @@ nav.scrolled{background:rgba(2,2,8,.9);border-bottom:1px solid var(--bd);backdro
 .btn-g:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2)}
 .btn-d{background:var(--disc);color:#fff;box-shadow:0 6px 30px rgba(88,101,242,.45)}
 .btn-d:hover{background:#6875f5;box-shadow:0 14px 50px rgba(88,101,242,.65)}
+.btn-sm{padding:9px 20px;font-size:.78rem;border-radius:10px}
 
 .sh{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--m2);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;animation:fU 1s .9s ease both}
 .sl2{width:1px;height:50px;background:linear-gradient(to bottom,var(--r),transparent);animation:sA 2s ease infinite}
 @keyframes sA{0%,100%{opacity:1;transform:scaleY(1);transform-origin:top}50%{opacity:.15;transform:scaleY(.35);transform-origin:top}}
 
-/* CONTAINERS */
 .container{max-width:1100px;margin:0 auto}
 .sec{padding:7rem 2rem;position:relative}
 .sl{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--r2);margin-bottom:.7rem;display:flex;align-items:center;gap:10px}
@@ -101,7 +95,6 @@ nav.scrolled{background:rgba(2,2,8,.9);border-bottom:1px solid var(--bd);backdro
 .sd{color:var(--m);font-size:.93rem;max-width:490px;line-height:1.8}
 .divl{height:1px;background:linear-gradient(90deg,transparent,var(--bd2),transparent)}
 
-/* FEATURES */
 .feat-s{background:var(--s1);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)}
 .feat-s::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--r),var(--o),transparent)}
 .fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:1.5rem;margin-top:3.5rem}
@@ -114,7 +107,6 @@ nav.scrolled{background:rgba(2,2,8,.9);border-bottom:1px solid var(--bd);backdro
 .ft{font-size:1.02rem;font-weight:800;margin-bottom:.5rem;position:relative;z-index:1}
 .fd{color:var(--m);font-size:.83rem;line-height:1.72;position:relative;z-index:1}
 
-/* LOADER */
 .lbox{background:var(--s1);border:1px solid var(--bd);border-radius:22px;overflow:hidden;margin-top:2.8rem;position:relative;box-shadow:0 0 100px rgba(255,26,62,.05)}
 .lbox::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--r),var(--o),var(--r2),transparent)}
 .ltop{background:var(--s2);padding:15px 26px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bd)}
@@ -133,7 +125,6 @@ nav.scrolled{background:rgba(2,2,8,.9);border-bottom:1px solid var(--bd);backdro
 .sdot{width:8px;height:8px;border-radius:50%;background:#28c840;box-shadow:0 0 8px #28c840;animation:pd 2s ease infinite}
 .lfoot span{font-family:var(--FM);font-size:.68rem;color:var(--m)}
 
-/* DISCORD */
 .dcard{background:linear-gradient(140deg,#080818,#0e0e28,#050512);border:1px solid rgba(88,101,242,.2);border-radius:28px;padding:4rem 4.5rem;display:flex;align-items:center;justify-content:space-between;gap:3rem;position:relative;overflow:hidden;box-shadow:0 0 120px rgba(88,101,242,.07)}
 .dcard::before{content:'';position:absolute;top:-25%;right:0%;width:550px;height:550px;border-radius:50%;background:radial-gradient(circle,rgba(88,101,242,.09),transparent 70%);pointer-events:none}
 .dcard::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(88,101,242,.5),transparent)}
@@ -143,17 +134,16 @@ nav.scrolled{background:rgba(2,2,8,.9);border-bottom:1px solid var(--bd);backdro
 .ds strong{display:block;font-size:1.6rem;font-weight:800;color:#fff}
 .ds span{font-size:.64rem;color:#4a5080;text-transform:uppercase;letter-spacing:.14em}
 
-/* TEAM */
 .team-s{background:var(--s1);border-top:1px solid var(--bd)}
 .th{text-align:center;margin-bottom:4.5rem}
 .th .sl{justify-content:center}
 .th .sd{margin:0 auto}
 .tg{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;max-width:870px;margin:0 auto}
-.tc{background:var(--s2);border:1px solid var(--bd);border-radius:26px;padding:3rem 2rem;text-align:center;position:relative;overflow:hidden;transition:all .4s}
-.tc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--r),var(--o),transparent);opacity:0;transition:opacity .4s}
-.tc::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% -10%,rgba(255,26,62,.06),transparent 60%);opacity:0;transition:opacity .4s}
-.tc:hover{border-color:rgba(255,26,62,.22);transform:translateY(-9px);box-shadow:0 30px 85px rgba(255,26,62,.1)}
-.tc:hover::before,.tc:hover::after{opacity:1}
+.tc2{background:var(--s2);border:1px solid var(--bd);border-radius:26px;padding:3rem 2rem;text-align:center;position:relative;overflow:hidden;transition:all .4s}
+.tc2::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--r),var(--o),transparent);opacity:0;transition:opacity .4s}
+.tc2::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% -10%,rgba(255,26,62,.06),transparent 60%);opacity:0;transition:opacity .4s}
+.tc2:hover{border-color:rgba(255,26,62,.22);transform:translateY(-9px);box-shadow:0 30px 85px rgba(255,26,62,.1)}
+.tc2:hover::before,.tc2:hover::after{opacity:1}
 .aw{width:104px;height:104px;border-radius:50%;margin:0 auto 1.6rem;position:relative}
 .aw::before{content:'';position:absolute;inset:-3px;border-radius:50%;background:conic-gradient(var(--r),var(--o),var(--r2),var(--r));z-index:0;animation:rB 4s linear infinite}
 @keyframes rB{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
@@ -162,12 +152,40 @@ nav.scrolled{background:rgba(2,2,8,.9);border-bottom:1px solid var(--bd);backdro
 .tr{display:inline-block;background:rgba(255,26,62,.1);border:1px solid rgba(255,26,62,.2);border-radius:100px;padding:3px 16px;font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--r2);margin-bottom:.9rem}
 .td{color:var(--m);font-size:.84rem;line-height:1.65;position:relative;z-index:1}
 
-/* FOOTER */
+/* ── EXECUTORS SECTION ── */
+.exec-s{background:var(--s1);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);position:relative}
+.exec-s::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--r),var(--o),transparent)}
+
+.exec-header{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;margin-bottom:2.5rem}
+.exec-meta{display:flex;gap:1.5rem;flex-wrap:wrap}
+.exec-stat{background:rgba(255,26,62,.07);border:1px solid rgba(255,26,62,.15);border-radius:12px;padding:10px 20px;text-align:center}
+.exec-stat strong{display:block;font-family:var(--FB);font-size:1.4rem;color:var(--r2);letter-spacing:.04em}
+.exec-stat span{font-size:.6rem;color:var(--m);text-transform:uppercase;letter-spacing:.16em}
+
+.exec-frame-wrap{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--bd);box-shadow:0 0 80px rgba(255,26,62,.06)}
+.exec-frame-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--r),var(--o),var(--r2),transparent);z-index:2}
+.exec-frame-bar{background:var(--s2);padding:13px 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bd)}
+.exec-frame-dots{display:flex;gap:7px}
+.exec-frame-dots span{width:12px;height:12px;border-radius:50%}
+.exec-frame-dots span:nth-child(1){background:#ff5f57}
+.exec-frame-dots span:nth-child(2){background:#febc2e}
+.exec-frame-dots span:nth-child(3){background:#28c840}
+.exec-frame-url{font-family:var(--FM);font-size:.7rem;color:var(--m);background:rgba(0,0,0,.3);padding:5px 16px;border-radius:100px;border:1px solid var(--bd)}
+.exec-frame-by{font-family:var(--FM);font-size:.65rem;color:var(--m2)}
+.exec-frame-by span{color:var(--r2)}
+.exec-iframe{width:100%;height:820px;border:none;display:block;background:var(--bg)}
+.exec-fallback{display:none;padding:4rem 2rem;text-align:center;color:var(--m);font-size:.9rem}
+.exec-fallback a{color:var(--r2);text-decoration:none}
+@media(max-width:768px){
+  .exec-iframe{height:600px}
+  .exec-header{flex-direction:column;align-items:flex-start}
+  .exec-frame-url{display:none}
+}
+
 footer{text-align:center;padding:2.5rem;border-top:1px solid var(--bd);color:var(--m2);font-size:.75rem;letter-spacing:.05em}
 footer a{color:var(--r2);text-decoration:none;transition:color .2s}
 footer a:hover{color:#fff}
 
-/* REVEAL */
 .rev{opacity:0;transform:translateY(30px);transition:opacity .75s ease,transform .75s ease}
 .rev.on{opacity:1;transform:none}
 
@@ -178,6 +196,9 @@ footer a:hover{color:#fff}
   .dl p{max-width:100%}
   .dstats{justify-content:center}
   .ca{padding:1.4rem;font-size:.75rem}
+  .exec-header{flex-direction:column;align-items:flex-start}
+  .ptabs{gap:6px}
+  .ptab{padding:7px 14px;font-size:.66rem}
 }
 </style>
 </head>
@@ -188,7 +209,6 @@ footer a:hover{color:#fff}
 <div id="cr"></div>
 <canvas id="pc"></canvas>
 
-<!-- ANNOUNCEMENT -->
 <div id="ann">
   <div class="ann-w">
     <div class="ann-pulse"></div>
@@ -198,18 +218,17 @@ footer a:hover{color:#fff}
   </div>
 </div>
 
-<!-- NAV -->
 <nav id="nav">
   <div class="nl">TSB HUB</div>
   <ul class="nlinks">
     <li><a href="#loader">Script</a></li>
+    <li><a href="#executors">Executors</a></li>
     <li><a href="#disc">Discord</a></li>
     <li><a href="#team">Team</a></li>
   </ul>
   <div></div>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="hero">
   <div class="h-amb"></div>
   <div class="h-grid"></div>
@@ -230,6 +249,10 @@ footer a:hover{color:#fff}
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
       Get Script
     </a>
+    <a href="#executors" class="btn btn-g">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      Executors
+    </a>
     <a href="#disc" class="btn btn-g">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
       Join Discord
@@ -240,7 +263,6 @@ footer a:hover{color:#fff}
 
 <div class="divl"></div>
 
-<!-- INFO -->
 <section class="feat-s sec">
   <div class="container">
     <div class="rev">
@@ -275,29 +297,22 @@ footer a:hover{color:#fff}
 
 <div class="divl"></div>
 
-<!-- LOADER -->
 <section class="sec" id="loader">
   <div class="container">
-    <div class="rev">
-      <p class="sl">Script Loader</p>
-      <h2 class="st">Main Loader</h2>
-      <p class="sd">Copy the script below, paste into your executor, and execute. Works with all major executors.</p>
-    </div>
-    <div class="lbox rev" style="transition-delay:.15s">
-      <div class="ltop">
-        <div class="ldots"><span></span><span></span><span></span></div>
-        <span class="lname">oxyshub_tsb.lua</span>
-        <button class="cbtn" id="cbtn" onclick="copyScript()">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          <span id="ctxt">Copy Script</span>
-        </button>
+    <div class="rev" style="text-align:center;max-width:600px;margin:0 auto">
+      <p class="sl" style="justify-content:center">Get The Script</p>
+      <h2 class="st">Join Our Discord</h2>
+      <p class="sd" style="max-width:100%;margin:0 auto 2.5rem">Join our Discord server to get the script and use it completely for free. Updated regularly, always free, no keys required.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+        <a href="https://discord.gg/A3ZJGfMUFP" target="_blank" rel="noopener" class="btn btn-d rev" style="transition-delay:.1s">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+          Join Discord & Get Script
+        </a>
       </div>
-      <div class="ca">
-        <span class="fn">loadstring</span><span class="pu">(</span><span class="fn">game</span><span class="pu">:</span><span class="fn">HttpGet</span><span class="pu">(</span><span class="str" id="sdisplay">"https://raw.githubusercontent.com/oxydaoxy/oxyshub-tsb/refs/heads/main/oxys%20hub%20tsb"</span><span class="pu">))()</span>
-      </div>
-      <div class="lfoot">
-        <div class="sdot"></div>
-        <span>Script active · Free forever · <span id="supd">Last updated recently</span> · <span id="sverel">v1.4</span></span>
+      <div class="rev" style="margin-top:2.5rem;display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;transition-delay:.2s">
+        <div style="text-align:center"><strong style="display:block;font-family:'Bebas Neue',cursive;font-size:1.6rem;color:#fff">Free</strong><span style="font-size:.62rem;color:#666;text-transform:uppercase;letter-spacing:.14em">Always</span></div>
+        <div style="text-align:center"><strong style="display:block;font-family:'Bebas Neue',cursive;font-size:1.6rem;color:#fff">No Keys</strong><span style="font-size:.62rem;color:#666;text-transform:uppercase;letter-spacing:.14em">Required</span></div>
+        <div style="text-align:center"><strong style="display:block;font-family:'Bebas Neue',cursive;font-size:1.6rem;color:#fff">24/7</strong><span style="font-size:.62rem;color:#666;text-transform:uppercase;letter-spacing:.14em">Support</span></div>
       </div>
     </div>
   </div>
@@ -305,131 +320,47 @@ footer a:hover{color:#fff}
 
 <div class="divl"></div>
 
-<!-- DISCORD -->
-<section class="sec" id="disc">
+<!-- EXECUTORS -->
+<section class="exec-s sec" id="executors">
   <div class="container">
-    <div class="dcard rev">
-      <div class="dl">
-        <h2>Join Our Discord</h2>
-        <p>Get the latest script updates, community support, and exclusive announcements. Real-time notifications whenever a new version drops.</p>
-        <div class="dstats">
-          <div class="ds"><strong>Free</strong><span>Always</span></div>
-          <div class="ds"><strong>24/7</strong><span>Support</span></div>
-          <div class="ds"><strong>Fast</strong><span>Updates</span></div>
+    <div class="rev exec-header">
+      <div>
+        <p class="sl">executor.net · by oxyrias</p>
+        <h2 class="st">Executors</h2>
+        <p class="sd">A free executor listing site developed and curated by oxyrias — 40+ executors across every platform with direct download links. No surveys, no keys.</p>
+      </div>
+      <div class="exec-meta">
+        <div class="exec-stat"><strong>40+</strong><span>Executors</span></div>
+        <div class="exec-stat"><strong>5</strong><span>Platforms</span></div>
+        <div class="exec-stat"><strong>100%</strong><span>Free</span></div>
+      </div>
+    </div>
+
+        <div class="rev" style="transition-delay:.1s;background:var(--s2);border:1px solid var(--bd);border-radius:20px;overflow:hidden;position:relative;box-shadow:0 0 80px rgba(255,26,62,.05)">
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--r),var(--o),transparent);z-index:2"></div>
+      <div style="background:var(--s1);padding:13px 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bd)">
+        <div style="display:flex;gap:7px">
+          <span style="width:12px;height:12px;border-radius:50%;background:#ff5f57;display:block"></span>
+          <span style="width:12px;height:12px;border-radius:50%;background:#febc2e;display:block"></span>
+          <span style="width:12px;height:12px;border-radius:50%;background:#28c840;display:block"></span>
         </div>
+        <span style="font-family:var(--FM);font-size:.7rem;color:var(--m);background:rgba(0,0,0,.3);padding:5px 16px;border-radius:100px;border:1px solid var(--bd)">executor-net-iota.vercel.app</span>
+        <span style="font-family:var(--FM);font-size:.65rem;color:var(--m2)">Website by <span style="color:var(--r2)">HzShawde</span></span>
       </div>
-      <a href="https://discord.gg/A3ZJGfMUFP" target="_blank" rel="noopener" class="btn btn-d" id="dlink">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
-        Join Discord
-      </a>
+      <iframe
+        src="https://executor-net-iota.vercel.app/"
+        title="executor.net"
+        loading="lazy"
+        sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-top-navigation"
+        style="width:100%;height:840px;border:none;display:block;background:var(--bg);opacity:0;transition:opacity .5s"
+        onload="this.style.opacity='1'"
+      ></iframe>
+      <div style="background:var(--s1);border-top:1px solid var(--bd);padding:12px 22px;display:flex;align-items:center;gap:10px">
+        <div style="width:8px;height:8px;border-radius:50%;background:#28c840;box-shadow:0 0 8px #28c840;animation:pd 2s ease infinite"></div>
+        <span style="font-family:var(--FM);font-size:.68rem;color:var(--m)">executor.net · developed by oxyrias · all download links are direct</span>
+      </div>
     </div>
   </div>
 </section>
 
 <div class="divl"></div>
-
-<!-- TEAM -->
-<section class="team-s sec" id="team">
-  <div class="container">
-    <div class="th rev">
-      <p class="sl">Credits</p>
-      <h2 class="st">The Creators & Helpers</h2>
-      <p class="sd">The people behind the script who make it all possible.</p>
-    </div>
-    <div class="tg">
-      <div class="tc rev">
-        <div class="aw"><img src="https://images-ext-1.discordapp.net/external/rwm0VsE-RlSRfkJJ2MnpY2hHmMbBpho_2-3eTSZsmGk/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1463312268409307166/05ba694840216029b5efdddfb403cd8d.png?format=webp&quality=lossless&width=662&height=662" alt="oxyrias" onerror="this.src='https://ui-avatars.com/api/?name=oxyrias&background=ff1a3e&color=fff&size=104&bold=true'"></div>
-        <div class="tn">oxyrias</div><div class="tr">Creator</div>
-        <p class="td">The Creator of the Script. Built and maintains the entire TSB hub from the ground up.</p>
-      </div>
-      <div class="tc rev" style="transition-delay:.12s">
-        <div class="aw"><img src="https://images-ext-1.discordapp.net/external/2I-6JxutC7pGbu3kvhfrXqv33RmStUma_vv4LAsbqSg/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1285373719073783889/7212306ea94b35bb8f2f4d5ea5d6b6ab.png?format=webp&quality=lossless&width=230&height=230" alt="virtual01" onerror="this.src='https://ui-avatars.com/api/?name=virtual01&background=ff6b2b&color=fff&size=104&bold=true'"></div>
-        <div class="tn">virtual01</div><div class="tr">Helper</div>
-        <p class="td">Helper of the Server. Provides support and assists the community with questions.</p>
-      </div>
-      <div class="tc rev" style="transition-delay:.24s">
-        <div class="aw"><img src="https://images-ext-1.discordapp.net/external/IxbI2MDfMNW92Z6JJ5Tv0ar5TP1uRDn9lZfre4lWYEA/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1257224567320215554/f03e0bc099c467f18bbe40f11b4d4d46.png?format=webp&quality=lossless&width=256&height=256" alt="HzShawde" onerror="this.src='https://ui-avatars.com/api/?name=HzShawde&background=ff1a3e&color=fff&size=104&bold=true'"></div>
-        <div class="tn">HzShawde</div><div class="tr">Web Maker</div>
-        <p class="td">The person who created this website.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <p>© 2025 TSB Script Hub by <a href="https://discord.gg/A3ZJGfMUFP" target="_blank">oxyrias</a> · Free forever · <a href="https://discord.gg/A3ZJGfMUFP" target="_blank">Discord</a></p>
-</footer>
-
-<script>
-const SCRIPT_URL="https://raw.githubusercontent.com/oxydaoxy/oxyshub-tsb/refs/heads/main/oxys%20hub%20tsb"
-
-function copyScript(){
-  navigator.clipboard.writeText(`loadstring(game:HttpGet("${SCRIPT_URL}"))()`)
-  const btn=document.getElementById("cbtn"),txt=document.getElementById("ctxt")
-  btn.classList.add("ok");txt.textContent="Copied!"
-  setTimeout(()=>{btn.classList.remove("ok");txt.textContent="Copy Script"},2200)
-}
-
-let annIv=null
-function closeAnn(){
-  document.getElementById("ann").classList.remove("on")
-  document.getElementById("nav").style.top="0"
-  if(annIv){clearInterval(annIv);annIv=null}
-}
-
-// REVEAL
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");obs.unobserve(e.target)}})
-},{threshold:.1})
-document.querySelectorAll(".rev").forEach(el=>obs.observe(el))
-
-window.addEventListener("scroll",()=>document.getElementById("nav").classList.toggle("scrolled",scrollY>50))
-
-// CURSOR
-const CX=document.getElementById("cx"),CR=document.getElementById("cr")
-let mx=0,my=0,rx=0,ry=0
-document.addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY;CX.style.left=mx+"px";CX.style.top=my+"px"})
-;(function rloop(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;CR.style.left=rx+"px";CR.style.top=ry+"px";requestAnimationFrame(rloop)})()
-
-// TRAIL
-const TC=document.getElementById("tc"),TCTX=TC.getContext("2d")
-let W,H,PTS=[],MXPTS=34
-const rsz=()=>{W=TC.width=window.innerWidth;H=TC.height=window.innerHeight}
-rsz();window.addEventListener("resize",rsz)
-document.addEventListener("mousemove",e=>{PTS.push({x:e.clientX,y:e.clientY,life:1});if(PTS.length>MXPTS)PTS.shift()})
-;(function tloop(){
-  TCTX.clearRect(0,0,W,H)
-  for(let i=1;i<PTS.length;i++){
-    const p=PTS[i],pp=PTS[i-1],t=i/PTS.length,a=t*0.5,s=t*4.5
-    TCTX.beginPath();TCTX.moveTo(pp.x,pp.y);TCTX.lineTo(p.x,p.y)
-    TCTX.strokeStyle=`rgba(255,${Math.floor(30+t*100)},${Math.floor(62+t*40)},${a})`
-    TCTX.lineWidth=s;TCTX.lineCap="round";TCTX.stroke()
-    if(t>.65){TCTX.beginPath();TCTX.arc(p.x,p.y,s*2,0,Math.PI*2);TCTX.fillStyle=`rgba(255,26,62,${a*.22})`;TCTX.fill()}
-  }
-  for(let i=PTS.length-1;i>=0;i--){PTS[i].life-=.033;if(PTS[i].life<=0)PTS.splice(i,1)}
-  requestAnimationFrame(tloop)
-})()
-
-// PARTICLES
-const PC=document.getElementById("pc"),PCTX=PC.getContext("2d")
-let PW,PH
-const prsz=()=>{PW=PC.width=window.innerWidth;PH=PC.height=window.innerHeight}
-prsz();window.addEventListener("resize",prsz)
-const PARTS=Array.from({length:60},()=>({
-  x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,
-  r:Math.random()*1.4+.3,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22,
-  o:Math.random()*.38+.08,c:Math.random()<.7?"rgba(255,26,62,":"rgba(255,107,43,"
-}))
-;(function ploop(){
-  PCTX.clearRect(0,0,PW,PH)
-  for(const p of PARTS){
-    p.x+=p.vx;p.y+=p.vy
-    if(p.x<0)p.x=PW;if(p.x>PW)p.x=0;if(p.y<0)p.y=PH;if(p.y>PH)p.y=0
-    PCTX.beginPath();PCTX.arc(p.x,p.y,p.r,0,Math.PI*2)
-    PCTX.fillStyle=p.c+p.o+")";PCTX.fill()
-  }
-  requestAnimationFrame(ploop)
-})()
-</script>
-</body>
-</html>
