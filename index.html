@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="red">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,22 +8,76 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#020208;--s1:#07070f;--s2:#0c0c18;--s3:#11111f;
+
+/* ── THEMES ── */
+:root,[data-theme="red"]{
+  --bg:#020208;--s1:#07070f;--s2:#0c0c18;
   --bd:rgba(255,255,255,0.055);--bd2:rgba(255,255,255,0.1);
   --r:#ff1a3e;--r2:#ff4d6a;--o:#ff6b2b;--o2:#ffaa55;
+  --glow:rgba(255,26,62,.25);--glow2:rgba(255,26,62,.55);
   --disc:#5865F2;--txt:#f2f0ff;--m:#666;--m2:#3a3a4a;
   --F:'Outfit',sans-serif;--FB:'Bebas Neue',cursive;--FM:'JetBrains Mono',monospace;
 }
+[data-theme="blue"]{
+  --bg:#010510;--s1:#030a1a;--s2:#060f22;
+  --bd:rgba(100,160,255,0.08);--bd2:rgba(100,160,255,0.16);
+  --r:#1a6fff;--r2:#4d94ff;--o:#00c3ff;--o2:#7dd8ff;
+  --glow:rgba(26,111,255,.25);--glow2:rgba(26,111,255,.55);
+  --disc:#5865F2;--txt:#eaf4ff;--m:#5577aa;--m2:#1a3060;
+}
+[data-theme="cyan"]{
+  --bg:#010c0e;--s1:#031316;--s2:#051c20;
+  --bd:rgba(0,220,200,0.07);--bd2:rgba(0,220,200,0.14);
+  --r:#00ddc8;--r2:#00ffeb;--o:#00b8cc;--o2:#7fffef;
+  --glow:rgba(0,221,200,.22);--glow2:rgba(0,221,200,.5);
+  --disc:#5865F2;--txt:#e0fffe;--m:#2a6666;--m2:#0a3030;
+}
+[data-theme="purple"]{
+  --bg:#050208;--s1:#0c060f;--s2:#110a18;
+  --bd:rgba(160,80,255,0.08);--bd2:rgba(160,80,255,0.15);
+  --r:#a020f0;--r2:#c060ff;--o:#7000d0;--o2:#d8a0ff;
+  --glow:rgba(160,32,240,.25);--glow2:rgba(160,32,240,.55);
+  --disc:#5865F2;--txt:#f0eaff;--m:#6644aa;--m2:#2a1050;
+}
+[data-theme="green"]{
+  --bg:#010a03;--s1:#031205;--s2:#051a08;
+  --bd:rgba(0,200,80,0.07);--bd2:rgba(0,200,80,0.14);
+  --r:#00d44e;--r2:#00ff60;--o:#00a83c;--o2:#80ffb0;
+  --glow:rgba(0,212,78,.22);--glow2:rgba(0,212,78,.5);
+  --disc:#5865F2;--txt:#e8ffee;--m:#2a6640;--m2:#0a2c14;
+}
+[data-theme="gold"]{
+  --bg:#080600;--s1:#100d00;--s2:#181200;
+  --bd:rgba(220,180,0,0.08);--bd2:rgba(220,180,0,0.16);
+  --r:#d4a000;--r2:#ffcc00;--o:#b07800;--o2:#ffe066;
+  --glow:rgba(212,160,0,.25);--glow2:rgba(212,160,0,.55);
+  --disc:#5865F2;--txt:#fffae8;--m:#806000;--m2:#302400;
+}
+
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--txt);font-family:var(--F);overflow-x:hidden;cursor:none;line-height:1.6}
-#cx{position:fixed;width:10px;height:10px;background:var(--r);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .12s,height .12s,background .15s;box-shadow:0 0 16px var(--r),0 0 32px rgba(255,26,62,.25)}
+body{background:var(--bg);color:var(--txt);font-family:var(--F);overflow-x:hidden;cursor:none;line-height:1.6;transition:background .4s,color .4s}
+
+/* CURSOR */
+#cx{position:fixed;width:10px;height:10px;background:var(--r);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .12s,height .12s,background .15s;box-shadow:0 0 16px var(--r),0 0 32px var(--glow)}
 #cr{position:fixed;width:42px;height:42px;border:1.5px solid rgba(255,26,62,.38);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .28s cubic-bezier(.23,1,.32,1),height .28s cubic-bezier(.23,1,.32,1),border-color .25s}
 body:has(a:hover) #cx,body:has(button:hover) #cx{width:16px;height:16px;background:#fff;box-shadow:0 0 20px rgba(255,255,255,.5)}
 body:has(a:hover) #cr,body:has(button:hover) #cr{width:62px;height:62px;border-color:rgba(255,26,62,.9)}
 #tc{position:fixed;inset:0;pointer-events:none;z-index:99997}
 #pc{position:fixed;inset:0;pointer-events:none;z-index:1}
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9990;opacity:.5}
+
+/* THEME SWITCHER */
+#theme-btn{position:fixed;bottom:32px;right:32px;z-index:8500;width:46px;height:46px;border-radius:50%;background:var(--r);border:none;cursor:none;box-shadow:0 4px 20px var(--glow);display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s}
+#theme-btn:hover{transform:scale(1.1);box-shadow:0 6px 28px var(--glow2)}
+#theme-btn svg{pointer-events:none}
+#theme-panel{position:fixed;bottom:90px;right:32px;z-index:8500;background:var(--s2);border:1px solid var(--bd2);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:10px;opacity:0;transform:translateY(12px) scale(.95);pointer-events:none;transition:opacity .25s,transform .25s;box-shadow:0 12px 50px rgba(0,0,0,.5)}
+#theme-panel.open{opacity:1;transform:none;pointer-events:all}
+.t-opt{display:flex;align-items:center;gap:12px;background:none;border:1px solid transparent;border-radius:10px;padding:8px 14px;cursor:none;transition:all .2s;color:var(--txt);font-family:var(--F);font-size:.8rem;font-weight:600;white-space:nowrap}
+.t-opt:hover,.t-opt.active{background:rgba(255,255,255,.07);border-color:var(--bd2)}
+.t-opt.active{border-color:var(--r2)}
+.t-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0}
+
+/* ANNOUNCEMENT */
 #ann{display:none;position:fixed;top:0;left:0;right:0;z-index:9500;animation:sD .4s ease both}
 #ann.on{display:flex}
 @keyframes sD{from{transform:translateY(-100%);opacity:0}to{transform:none;opacity:1}}
@@ -34,6 +88,8 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .ann-t{font-family:var(--FM);font-size:.68rem;color:var(--m);background:rgba(0,0,0,.4);padding:3px 11px;border-radius:100px;border:1px solid var(--bd);flex-shrink:0}
 .ann-x{width:26px;height:26px;background:none;border:none;color:var(--m);cursor:none;font-size:1rem;flex-shrink:0;border-radius:5px;transition:color .2s,background .2s;display:flex;align-items:center;justify-content:center}
 .ann-x:hover{color:var(--txt);background:rgba(255,255,255,.07)}
+
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:8000;padding:20px 56px;display:flex;align-items:center;justify-content:space-between;transition:all .4s}
 nav.scrolled{background:rgba(2,2,8,.9);border-bottom:1px solid var(--bd);backdrop-filter:blur(28px)}
 .nl{font-family:var(--FB);font-size:1.55rem;letter-spacing:.12em;background:linear-gradient(90deg,#fff 30%,var(--r2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -41,9 +97,11 @@ nav.scrolled{background:rgba(2,2,8,.9);border-bottom:1px solid var(--bd);backdro
 .nlinks a{text-decoration:none;font-size:.75rem;font-weight:700;color:var(--m);letter-spacing:.14em;text-transform:uppercase;transition:color .25s;position:relative;padding-bottom:4px}
 .nlinks a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--r),var(--o));transform:scaleX(0);transition:transform .3s cubic-bezier(.23,1,.32,1);transform-origin:left}
 .nlinks a:hover{color:var(--txt)}.nlinks a:hover::after{transform:scaleX(1)}
+
+/* HERO */
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:9rem 2rem 6rem;overflow:hidden;z-index:2}
-.h-amb{position:absolute;inset:0;background:radial-gradient(ellipse 100% 65% at 50% -15%,rgba(255,26,62,.2) 0%,transparent 65%),radial-gradient(ellipse 55% 55% at 92% 82%,rgba(255,107,43,.09) 0%,transparent 58%),radial-gradient(ellipse 60% 50% at 3% 55%,rgba(255,26,62,.05) 0%,transparent 60%);pointer-events:none}
-.h-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,26,62,.042) 1px,transparent 1px),linear-gradient(90deg,rgba(255,26,62,.042) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 90% 72% at 50% 0%,black 15%,transparent 80%);pointer-events:none}
+.h-amb{position:absolute;inset:0;background:radial-gradient(ellipse 100% 65% at 50% -15%,rgba(255,26,62,.2) 0%,transparent 65%),radial-gradient(ellipse 55% 55% at 92% 82%,rgba(255,107,43,.09) 0%,transparent 58%),radial-gradient(ellipse 60% 50% at 3% 55%,rgba(255,26,62,.05) 0%,transparent 60%);pointer-events:none;transition:background .4s}
+.h-grid{position:absolute;inset:0;background-image:linear-gradient(var(--bd) 1px,transparent 1px),linear-gradient(90deg,var(--bd) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 90% 72% at 50% 0%,black 15%,transparent 80%);pointer-events:none}
 .h-diag{position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:.6}
 .h-diag::before{content:'';position:absolute;width:200%;height:200%;top:-50%;left:-50%;background:repeating-linear-gradient(55deg,transparent,transparent 90px,rgba(255,26,62,.012) 90px,rgba(255,26,62,.012) 91px);animation:dD 30s linear infinite}
 @keyframes dD{from{transform:translate(0,0)}to{transform:translate(91px,91px)}}
@@ -60,16 +118,18 @@ nav.scrolled{background:rgba(2,2,8,.9);border-bottom:1px solid var(--bd);backdro
 .h-eye{font-size:.73rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,100,130,.6);margin-bottom:1rem;font-weight:700;animation:fU .7s .08s ease both}
 .hero h1{font-family:var(--FB);font-size:clamp(4.5rem,14vw,11rem);letter-spacing:.05em;line-height:.88;margin-bottom:2rem;animation:fU .7s .18s ease both}
 .hero h1 .l1{display:block;color:#fff}
-.hero h1 .l2{display:block;background:linear-gradient(115deg,var(--r) 10%,var(--o) 50%,var(--o2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 55px rgba(255,26,62,.55))}
+.hero h1 .l2{display:block;background:linear-gradient(115deg,var(--r) 10%,var(--o) 50%,var(--o2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 55px var(--glow2))}
 .h-desc{font-size:1rem;color:rgba(242,240,255,.5);max-width:460px;margin:0 auto 2.8rem;line-height:1.8;animation:fU .7s .28s ease both}
 .h-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fU .7s .4s ease both}
 @keyframes fU{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+
+/* BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:10px;padding:15px 34px;border-radius:14px;font-family:var(--F);font-weight:700;font-size:.9rem;letter-spacing:.04em;text-decoration:none;border:none;cursor:none;transition:transform .25s cubic-bezier(.23,1,.32,1),box-shadow .25s;position:relative;overflow:hidden}
 .btn::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.08);opacity:0;transition:opacity .2s}
 .btn:hover::before{opacity:1}
 .btn:hover{transform:translateY(-4px)}
-.btn-p{background:linear-gradient(135deg,var(--r),var(--o));color:#fff;box-shadow:0 6px 30px rgba(255,26,62,.5),inset 0 1px 0 rgba(255,255,255,.12)}
-.btn-p:hover{box-shadow:0 14px 50px rgba(255,26,62,.68),inset 0 1px 0 rgba(255,255,255,.12)}
+.btn-p{background:linear-gradient(135deg,var(--r),var(--o));color:#fff;box-shadow:0 6px 30px var(--glow),inset 0 1px 0 rgba(255,255,255,.12)}
+.btn-p:hover{box-shadow:0 14px 50px var(--glow2),inset 0 1px 0 rgba(255,255,255,.12)}
 .btn-g{background:rgba(255,255,255,.04);color:var(--txt);border:1px solid var(--bd2)}
 .btn-g:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2)}
 .btn-d{background:var(--disc);color:#fff;box-shadow:0 6px 30px rgba(88,101,242,.45)}
@@ -77,6 +137,8 @@ nav.scrolled{background:rgba(2,2,8,.9);border-bottom:1px solid var(--bd);backdro
 .sh{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--m2);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;animation:fU 1s .9s ease both}
 .sl2{width:1px;height:50px;background:linear-gradient(to bottom,var(--r),transparent);animation:sA 2s ease infinite}
 @keyframes sA{0%,100%{opacity:1;transform:scaleY(1);transform-origin:top}50%{opacity:.15;transform:scaleY(.35);transform-origin:top}}
+
+/* LAYOUT */
 .container{max-width:1100px;margin:0 auto}
 .sec{padding:7rem 2rem;position:relative}
 .sl{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--r2);margin-bottom:.7rem;display:flex;align-items:center;gap:10px}
@@ -84,13 +146,15 @@ nav.scrolled{background:rgba(2,2,8,.9);border-bottom:1px solid var(--bd);backdro
 .st{font-family:var(--FB);font-size:clamp(2.4rem,5vw,4rem);letter-spacing:.04em;margin-bottom:.8rem;line-height:1}
 .sd{color:var(--m);font-size:.93rem;max-width:490px;line-height:1.8}
 .divl{height:1px;background:linear-gradient(90deg,transparent,var(--bd2),transparent)}
+
+/* FEATURES */
 .feat-s{background:var(--s1);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)}
 .feat-s::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--r),var(--o),transparent)}
 .fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:1.5rem;margin-top:3.5rem}
 .fc{background:var(--s2);border:1px solid var(--bd);border-radius:20px;padding:2.2rem;position:relative;overflow:hidden;transition:border-color .35s,transform .35s,box-shadow .35s}
 .fc::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--r),transparent);opacity:0;transition:opacity .35s}
 .fc::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% -20%,rgba(255,26,62,.07),transparent 65%);opacity:0;transition:opacity .35s}
-.fc:hover{border-color:rgba(255,26,62,.25);transform:translateY(-7px);box-shadow:0 22px 65px rgba(255,26,62,.1)}
+.fc:hover{border-color:rgba(255,26,62,.25);transform:translateY(-7px);box-shadow:0 22px 65px var(--glow)}
 .fc:hover::before,.fc:hover::after{opacity:1}
 .fi{width:50px;height:50px;background:linear-gradient(135deg,rgba(255,26,62,.14),rgba(255,107,43,.07));border:1px solid rgba(255,26,62,.18);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.35rem;margin-bottom:1.3rem;position:relative;z-index:1}
 .ft{font-size:1.02rem;font-weight:800;margin-bottom:.5rem;position:relative;z-index:1}
@@ -114,7 +178,7 @@ nav.scrolled{background:rgba(2,2,8,.9);border-bottom:1px solid var(--bd);backdro
 .exec-stat-box{background:rgba(255,26,62,.07);border:1px solid rgba(255,26,62,.15);border-radius:12px;padding:10px 18px;text-align:center}
 .exec-stat-box strong{display:block;font-family:var(--FB);font-size:1.4rem;color:var(--r2);letter-spacing:.04em}
 .exec-stat-box span{font-size:.6rem;color:var(--m);text-transform:uppercase;letter-spacing:.16em}
-.exec-frame{background:var(--s2);border:1px solid var(--bd);border-radius:20px;overflow:hidden;position:relative;box-shadow:0 0 80px rgba(255,26,62,.05)}
+.exec-frame{background:var(--s2);border:1px solid var(--bd);border-radius:20px;overflow:hidden;position:relative;box-shadow:0 0 80px var(--glow)}
 .exec-frame::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--r),var(--o),transparent);z-index:2;pointer-events:none}
 .exec-bar{background:var(--s1);padding:13px 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bd)}
 .exec-dots{display:flex;gap:7px}
@@ -130,6 +194,24 @@ nav.scrolled{background:rgba(2,2,8,.9);border-bottom:1px solid var(--bd);backdro
 .exec-foot-dot{width:8px;height:8px;border-radius:50%;background:#28c840;box-shadow:0 0 8px #28c840;animation:pd 2s ease infinite;flex-shrink:0}
 .exec-foot span{font-family:var(--FM);font-size:.68rem;color:var(--m)}
 
+/* GAMES */
+.games-s{background:var(--s1);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);position:relative}
+.games-s::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--o),var(--o2),transparent)}
+.games-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.6rem;margin-top:3rem}
+.game-card{background:var(--s2);border:1px solid var(--bd);border-radius:20px;overflow:hidden;transition:all .35s}
+.game-card:hover{border-color:rgba(255,107,43,.3);box-shadow:0 20px 60px rgba(255,107,43,.1);transform:translateY(-5px)}
+.game-card-top{padding:1.4rem 1.6rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bd)}
+.game-title{font-size:1rem;font-weight:800;display:flex;align-items:center;gap:10px}
+.game-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--o),var(--o2));display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.game-score{font-family:var(--FM);font-size:.72rem;color:var(--m)}
+.game-score span{color:var(--o2);font-weight:700}
+.game-body{padding:1.2rem}
+.game-canvas{border-radius:12px;background:#000;display:block;width:100%;cursor:none}
+.game-footer{padding:.8rem 1.6rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--bd)}
+.game-hint{font-size:.68rem;color:var(--m);font-family:var(--FM)}
+.game-btn{padding:6px 18px;border-radius:8px;border:1px solid var(--bd2);background:rgba(255,255,255,.05);color:var(--txt);font-family:var(--F);font-size:.72rem;font-weight:700;cursor:none;transition:all .2s}
+.game-btn:hover{background:rgba(255,107,43,.15);border-color:rgba(255,107,43,.4);color:var(--o2)}
+
 /* DISCORD */
 .dcard{background:linear-gradient(140deg,#080818,#0e0e28,#050512);border:1px solid rgba(88,101,242,.2);border-radius:28px;padding:4rem 4.5rem;display:flex;align-items:center;justify-content:space-between;gap:3rem;position:relative;overflow:hidden;box-shadow:0 0 120px rgba(88,101,242,.07)}
 .dcard::before{content:'';position:absolute;top:-25%;right:0%;width:550px;height:550px;border-radius:50%;background:radial-gradient(circle,rgba(88,101,242,.09),transparent 70%);pointer-events:none}
@@ -139,6 +221,8 @@ nav.scrolled{background:rgba(2,2,8,.9);border-bottom:1px solid var(--bd);backdro
 .dstats{display:flex;gap:3rem;margin-top:2.2rem}
 .ds strong{display:block;font-size:1.6rem;font-weight:800;color:#fff}
 .ds span{font-size:.64rem;color:#4a5080;text-transform:uppercase;letter-spacing:.14em}
+
+/* TEAM */
 .team-s{background:var(--s1);border-top:1px solid var(--bd)}
 .th{text-align:center;margin-bottom:4.5rem}
 .th .sl{justify-content:center}
@@ -147,7 +231,7 @@ nav.scrolled{background:rgba(2,2,8,.9);border-bottom:1px solid var(--bd);backdro
 .tc{background:var(--s2);border:1px solid var(--bd);border-radius:26px;padding:3rem 2rem;text-align:center;position:relative;overflow:hidden;transition:all .4s}
 .tc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--r),var(--o),transparent);opacity:0;transition:opacity .4s}
 .tc::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% -10%,rgba(255,26,62,.06),transparent 60%);opacity:0;transition:opacity .4s}
-.tc:hover{border-color:rgba(255,26,62,.22);transform:translateY(-9px);box-shadow:0 30px 85px rgba(255,26,62,.1)}
+.tc:hover{border-color:rgba(255,26,62,.22);transform:translateY(-9px);box-shadow:0 30px 85px var(--glow)}
 .tc:hover::before,.tc:hover::after{opacity:1}
 .aw{width:104px;height:104px;border-radius:50%;margin:0 auto 1.6rem;position:relative}
 .aw::before{content:'';position:absolute;inset:-3px;border-radius:50%;background:conic-gradient(var(--r),var(--o),var(--r2),var(--r));z-index:0;animation:rB 4s linear infinite}
@@ -156,11 +240,13 @@ nav.scrolled{background:rgba(2,2,8,.9);border-bottom:1px solid var(--bd);backdro
 .tn{font-size:1.2rem;font-weight:800;margin-bottom:.5rem}
 .tr{display:inline-block;background:rgba(255,26,62,.1);border:1px solid rgba(255,26,62,.2);border-radius:100px;padding:3px 16px;font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--r2);margin-bottom:.9rem}
 .td{color:var(--m);font-size:.84rem;line-height:1.65;position:relative;z-index:1}
+
 footer{text-align:center;padding:2.5rem;border-top:1px solid var(--bd);color:var(--m2);font-size:.75rem;letter-spacing:.05em}
 footer a{color:var(--r2);text-decoration:none;transition:color .2s}
 footer a:hover{color:#fff}
 .rev{opacity:0;transform:translateY(30px);transition:opacity .75s ease,transform .75s ease}
 .rev.on{opacity:1;transform:none}
+
 @media(max-width:768px){
   nav{padding:14px 20px}
   .nlinks{display:none}
@@ -171,6 +257,8 @@ footer a:hover{color:#fff}
   .exec-header{flex-direction:column;align-items:flex-start}
   .exec-url{display:none}
   .script-cta{padding:2.5rem 1.5rem}
+  #theme-btn{bottom:20px;right:20px}
+  #theme-panel{right:20px;bottom:78px}
 }
 </style>
 </head>
@@ -180,6 +268,19 @@ footer a:hover{color:#fff}
 <div id="cx"></div>
 <div id="cr"></div>
 <canvas id="pc"></canvas>
+
+<!-- THEME SWITCHER -->
+<button id="theme-btn" onclick="toggleTheme()" title="Change Theme">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+</button>
+<div id="theme-panel">
+  <button class="t-opt active" onclick="setTheme('red',this)"><span class="t-dot" style="background:#ff1a3e"></span>Crimson</button>
+  <button class="t-opt" onclick="setTheme('blue',this)"><span class="t-dot" style="background:#1a6fff"></span>Navy Blue</button>
+  <button class="t-opt" onclick="setTheme('cyan',this)"><span class="t-dot" style="background:#00ddc8"></span>Cyber Cyan</button>
+  <button class="t-opt" onclick="setTheme('purple',this)"><span class="t-dot" style="background:#a020f0"></span>Deep Purple</button>
+  <button class="t-opt" onclick="setTheme('green',this)"><span class="t-dot" style="background:#00d44e"></span>Matrix Green</button>
+  <button class="t-opt" onclick="setTheme('gold',this)"><span class="t-dot" style="background:#d4a000"></span>Dark Gold</button>
+</div>
 
 <div id="ann">
   <div class="ann-w">
@@ -195,6 +296,7 @@ footer a:hover{color:#fff}
   <ul class="nlinks">
     <li><a href="#loader">Script</a></li>
     <li><a href="#executors">Executors</a></li>
+    <li><a href="#games">Games</a></li>
     <li><a href="#disc">Discord</a></li>
     <li><a href="#team">Team</a></li>
   </ul>
@@ -275,7 +377,7 @@ footer a:hover{color:#fff}
     <div class="rev">
       <p class="sl">Get The Script</p>
       <h2 class="st">Join Our Discord</h2>
-      <p class="sd">Join our Discord server to get the script and use it completely for free. Updated regularly, always free, no keys required.</p>
+      <p class="sd">Join our Discord server to get the script and use it completely for free. Updated regularly, always free.</p>
     </div>
     <div class="script-cta rev" style="transition-delay:.15s">
       <h3>Get the Script for Free</h3>
@@ -286,7 +388,6 @@ footer a:hover{color:#fff}
       </a>
       <div class="script-stats">
         <div class="script-stat"><strong>Free</strong><span>Always</span></div>
-        <div class="script-stat"><strong>No Keys</strong><span>Required</span></div>
         <div class="script-stat"><strong>24/7</strong><span>Support</span></div>
         <div class="script-stat"><strong>Fast</strong><span>Updates</span></div>
       </div>
@@ -303,7 +404,7 @@ footer a:hover{color:#fff}
       <div>
         <p class="sl">executor.net · by oxyrias</p>
         <h2 class="st">Executors</h2>
-        <p class="sd">A free executor listing site curated by oxyrias — 40+ executors across every platform with direct download links. No surveys, no keys.</p>
+        <p class="sd">A free executor listing site created and curated by oxyrias — 40+ executors across every platform with direct download links. No surveys, no keys.</p>
       </div>
       <div class="exec-stats">
         <div class="exec-stat-box"><strong>40+</strong><span>Executors</span></div>
@@ -315,7 +416,7 @@ footer a:hover{color:#fff}
       <div class="exec-bar">
         <div class="exec-dots"><span></span><span></span><span></span></div>
         <div class="exec-url">executor-net-iota.vercel.app</div>
-        <div class="exec-credit">Website by <span>HzShawde</span></div>
+        <div class="exec-credit">Created by <span>oxyrias</span></div>
       </div>
       <iframe
         class="exec-iframe"
@@ -327,8 +428,72 @@ footer a:hover{color:#fff}
       ></iframe>
       <div class="exec-foot">
         <div class="exec-foot-dot"></div>
-        <span>executor.net · developed by oxyrias · all links are direct downloads</span>
+        <span>executor.net · created by oxyrias · all links are direct downloads</span>
       </div>
+    </div>
+  </div>
+</section>
+
+<div class="divl"></div>
+
+<!-- GAMES -->
+<section class="games-s sec" id="games">
+  <div class="container">
+    <div class="rev">
+      <p class="sl">Mini Games</p>
+      <h2 class="st">Play & Chill</h2>
+      <p class="sd">Take a break and play some games while you wait. All games run directly in the browser.</p>
+    </div>
+    <div class="games-grid">
+
+      <!-- SNAKE -->
+      <div class="game-card rev" style="transition-delay:.06s">
+        <div class="game-card-top">
+          <div class="game-title"><div class="game-icon">🐍</div>Snake</div>
+          <div class="game-score">Score: <span id="snake-score">0</span></div>
+        </div>
+        <div class="game-body">
+          <canvas id="snake-canvas" class="game-canvas" width="280" height="220"></canvas>
+        </div>
+        <div class="game-footer">
+          <span class="game-hint">Arrow Keys / WASD to move</span>
+          <button class="game-btn" onclick="snakeRestart()">Restart</button>
+        </div>
+      </div>
+
+      <!-- REACTION CLICKER -->
+      <div class="game-card rev" style="transition-delay:.12s">
+        <div class="game-card-top">
+          <div class="game-title"><div class="game-icon">⚡</div>Reaction</div>
+          <div class="game-score">Best: <span id="react-best">--</span> ms</div>
+        </div>
+        <div class="game-body" style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:1.6rem">
+          <div id="react-box" style="width:100%;height:120px;border-radius:14px;background:var(--s1);border:2px solid var(--bd);display:flex;align-items:center;justify-content:center;font-family:var(--FM);font-size:.85rem;color:var(--m);cursor:none;transition:background .2s,border-color .2s;user-select:none" onclick="reactClick()">
+            Click to Start
+          </div>
+          <div id="react-result" style="font-family:var(--FM);font-size:.78rem;color:var(--m);min-height:1.2em"></div>
+        </div>
+        <div class="game-footer">
+          <span class="game-hint">Click when it turns green!</span>
+          <button class="game-btn" onclick="reactReset()">Reset</button>
+        </div>
+      </div>
+
+      <!-- MEMORY MATCH -->
+      <div class="game-card rev" style="transition-delay:.18s">
+        <div class="game-card-top">
+          <div class="game-title"><div class="game-icon">🧠</div>Memory</div>
+          <div class="game-score">Pairs: <span id="mem-score">0</span>/8</div>
+        </div>
+        <div class="game-body">
+          <div id="mem-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px"></div>
+        </div>
+        <div class="game-footer">
+          <span class="game-hint">Match all pairs to win</span>
+          <button class="game-btn" onclick="memInit()">Restart</button>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -370,7 +535,7 @@ footer a:hover{color:#fff}
       <div class="tc rev">
         <div class="aw"><img src="https://images-ext-1.discordapp.net/external/rwm0VsE-RlSRfkJJ2MnpY2hHmMbBpho_2-3eTSZsmGk/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1463312268409307166/05ba694840216029b5efdddfb403cd8d.png?format=webp&quality=lossless&width=662&height=662" alt="oxyrias" onerror="this.src='https://ui-avatars.com/api/?name=oxyrias&background=ff1a3e&color=fff&size=104&bold=true'"></div>
         <div class="tn">oxyrias</div><div class="tr">Creator</div>
-        <p class="td">The Creator of the Script. Built and maintains the entire TSB hub from the ground up.</p>
+        <p class="td">The Creator of the Script and executor.net. Built and maintains the entire TSB hub from the ground up.</p>
       </div>
       <div class="tc rev" style="transition-delay:.12s">
         <div class="aw"><img src="https://images-ext-1.discordapp.net/external/2I-6JxutC7pGbu3kvhfrXqv33RmStUma_vv4LAsbqSg/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1285373719073783889/7212306ea94b35bb8f2f4d5ea5d6b6ab.png?format=webp&quality=lossless&width=230&height=230" alt="virtual01" onerror="this.src='https://ui-avatars.com/api/?name=virtual01&background=ff6b2b&color=fff&size=104&bold=true'"></div>
@@ -380,7 +545,7 @@ footer a:hover{color:#fff}
       <div class="tc rev" style="transition-delay:.24s">
         <div class="aw"><img src="https://images-ext-1.discordapp.net/external/IxbI2MDfMNW92Z6JJ5Tv0ar5TP1uRDn9lZfre4lWYEA/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1257224567320215554/f03e0bc099c467f18bbe40f11b4d4d46.png?format=webp&quality=lossless&width=256&height=256" alt="HzShawde" onerror="this.src='https://ui-avatars.com/api/?name=HzShawde&background=ff1a3e&color=fff&size=104&bold=true'"></div>
         <div class="tn">HzShawde</div><div class="tr">Web Maker</div>
-        <p class="td">The person who created this website.</p>
+        <p class="td">Helped with the creation of this website.</p>
       </div>
     </div>
   </div>
@@ -391,25 +556,39 @@ footer a:hover{color:#fff}
 </footer>
 
 <script>
+/* ── THEME ── */
+function toggleTheme(){document.getElementById("theme-panel").classList.toggle("open")}
+function setTheme(t,el){
+  document.documentElement.setAttribute("data-theme",t)
+  document.querySelectorAll(".t-opt").forEach(b=>b.classList.remove("active"))
+  el.classList.add("active")
+  document.getElementById("theme-panel").classList.remove("open")
+}
+document.addEventListener("click",e=>{
+  const p=document.getElementById("theme-panel"),b=document.getElementById("theme-btn")
+  if(!p.contains(e.target)&&e.target!==b)p.classList.remove("open")
+})
+
+/* ── MISC ── */
 let annIv=null
 function closeAnn(){
   document.getElementById("ann").classList.remove("on")
   document.getElementById("nav").style.top="0"
   if(annIv){clearInterval(annIv);annIv=null}
 }
-
 const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");obs.unobserve(e.target)}})
 },{threshold:.1})
 document.querySelectorAll(".rev").forEach(el=>obs.observe(el))
-
 window.addEventListener("scroll",()=>document.getElementById("nav").classList.toggle("scrolled",scrollY>50))
 
+/* ── CURSOR ── */
 const CX=document.getElementById("cx"),CR=document.getElementById("cr")
 let mx=0,my=0,rx=0,ry=0
 document.addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY;CX.style.left=mx+"px";CX.style.top=my+"px"})
 ;(function rloop(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;CR.style.left=rx+"px";CR.style.top=ry+"px";requestAnimationFrame(rloop)})()
 
+/* ── TRAIL ── */
 const TC=document.getElementById("tc"),TCTX=TC.getContext("2d")
 let W,H,PTS=[],MXPTS=34
 const rsz=()=>{W=TC.width=window.innerWidth;H=TC.height=window.innerHeight}
@@ -428,6 +607,7 @@ document.addEventListener("mousemove",e=>{PTS.push({x:e.clientX,y:e.clientY,life
   requestAnimationFrame(tloop)
 })()
 
+/* ── PARTICLES ── */
 const PC=document.getElementById("pc"),PCTX=PC.getContext("2d")
 let PW,PH
 const prsz=()=>{PW=PC.width=window.innerWidth;PH=PC.height=window.innerHeight}
@@ -447,6 +627,156 @@ const PARTS=Array.from({length:60},()=>({
   }
   requestAnimationFrame(ploop)
 })()
+
+/* ══════════════════════════════
+   SNAKE
+══════════════════════════════ */
+const SC=document.getElementById("snake-canvas"),SX=SC.getContext("2d")
+const GS=20,COLS=Math.floor(280/GS),ROWS=Math.floor(220/GS)
+let snake,dir,food,snakeScore,snakeAlive,snakeLoop
+function snakeInit(){
+  snake=[{x:5,y:5},{x:4,y:5},{x:3,y:5}]
+  dir={x:1,y:0};snakeScore=0;snakeAlive=true
+  document.getElementById("snake-score").textContent=0
+  spawnFood();snakeDraw()
+}
+function spawnFood(){
+  do{food={x:Math.floor(Math.random()*COLS),y:Math.floor(Math.random()*ROWS)}}
+  while(snake.some(s=>s.x===food.x&&s.y===food.y))
+}
+function snakeTick(){
+  if(!snakeAlive)return
+  const head={x:snake[0].x+dir.x,y:snake[0].y+dir.y}
+  if(head.x<0||head.x>=COLS||head.y<0||head.y>=ROWS||snake.some(s=>s.x===head.x&&s.y===head.y)){
+    snakeAlive=false;snakeDraw();return
+  }
+  snake.unshift(head)
+  if(head.x===food.x&&head.y===food.y){snakeScore++;document.getElementById("snake-score").textContent=snakeScore;spawnFood()}
+  else snake.pop()
+  snakeDraw()
+}
+function snakeDraw(){
+  SX.fillStyle="#050510";SX.fillRect(0,0,280,220)
+  if(!snakeAlive){
+    SX.fillStyle="rgba(255,26,62,.15)";SX.fillRect(0,0,280,220)
+    SX.fillStyle="#fff";SX.font="bold 18px 'Outfit',sans-serif";SX.textAlign="center"
+    SX.fillText("Game Over",140,100)
+    SX.fillStyle="#666";SX.font="13px 'Outfit',sans-serif"
+    SX.fillText("Score: "+snakeScore,140,122);return
+  }
+  SX.fillStyle="#ff6b2b";SX.beginPath();SX.roundRect(food.x*GS+2,food.y*GS+2,GS-4,GS-4,4);SX.fill()
+  snake.forEach((s,i)=>{
+    SX.fillStyle=i===0?"#ff1a3e":`rgba(255,77,106,${1-i/snake.length*.6})`
+    SX.beginPath();SX.roundRect(s.x*GS+1,s.y*GS+1,GS-2,GS-2,i===0?5:3);SX.fill()
+  })
+}
+function snakeRestart(){
+  clearInterval(snakeLoop);snakeInit()
+  snakeLoop=setInterval(snakeTick,110)
+}
+document.addEventListener("keydown",e=>{
+  if(!snakeAlive){if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight","w","s","a","d"].includes(e.key))snakeRestart();return}
+  const m={ArrowUp:{x:0,y:-1},ArrowDown:{x:0,y:1},ArrowLeft:{x:-1,y:0},ArrowRight:{x:1,y:0},w:{x:0,y:-1},s:{x:0,y:1},a:{x:-1,y:0},d:{x:1,y:0}}
+  const nd=m[e.key]
+  if(nd&&!(nd.x===-dir.x&&nd.y===-dir.y)){dir=nd;e.preventDefault()}
+})
+snakeInit();snakeLoop=setInterval(snakeTick,110)
+
+/* ══════════════════════════════
+   REACTION
+══════════════════════════════ */
+let reactState="idle",reactT=null,reactStart=null,reactBest=null
+function reactClick(){
+  const box=document.getElementById("react-box"),res=document.getElementById("react-result")
+  if(reactState==="idle"){
+    reactState="waiting"
+    box.style.background="rgba(255,26,62,.15)"
+    box.style.borderColor="rgba(255,26,62,.4)"
+    box.textContent="Wait for green..."
+    res.textContent=""
+    const delay=1500+Math.random()*3000
+    reactT=setTimeout(()=>{
+      reactState="ready"
+      box.style.background="rgba(0,200,80,.2)"
+      box.style.borderColor="rgba(0,200,80,.5)"
+      box.textContent="CLICK NOW!"
+      reactStart=performance.now()
+    },delay)
+  } else if(reactState==="waiting"){
+    clearTimeout(reactT);reactState="idle"
+    box.style.background="var(--s1)"
+    box.style.borderColor="rgba(255,26,62,.4)"
+    box.textContent="Too early! Click to try again"
+    res.textContent=""
+  } else if(reactState==="ready"){
+    const ms=Math.round(performance.now()-reactStart)
+    reactState="idle"
+    box.style.background="var(--s1)"
+    box.style.borderColor="var(--bd)"
+    box.textContent="Click to try again"
+    if(reactBest===null||ms<reactBest){reactBest=ms;document.getElementById("react-best").textContent=ms}
+    res.textContent=ms<200?"🔥 Insane! "+ms+"ms":ms<350?"⚡ Fast! "+ms+"ms":ms<600?"👍 "+ms+"ms":"😅 "+ms+"ms"
+  }
+}
+function reactReset(){
+  clearTimeout(reactT);reactState="idle";reactBest=null
+  document.getElementById("react-best").textContent="--"
+  document.getElementById("react-result").textContent=""
+  const box=document.getElementById("react-box")
+  box.style.background="var(--s1)";box.style.borderColor="var(--bd)"
+  box.textContent="Click to Start"
+}
+
+/* ══════════════════════════════
+   MEMORY
+══════════════════════════════ */
+const EMOJIS=["🔥","⚡","🎮","💀","🐍","👾","🌙","⭐"]
+let memCards=[],memFlipped=[],memMatched=0,memLocked=false
+function memInit(){
+  memMatched=0;memFlipped=[];memLocked=false
+  document.getElementById("mem-score").textContent=0
+  const pairs=[...EMOJIS,...EMOJIS].sort(()=>Math.random()-.5)
+  memCards=pairs.map((e,i)=>({e,i,matched:false,flipped:false}))
+  const g=document.getElementById("mem-grid")
+  g.innerHTML=""
+  memCards.forEach((c,i)=>{
+    const el=document.createElement("div")
+    el.style.cssText="height:52px;border-radius:10px;background:var(--s1);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;font-size:1.4rem;cursor:none;transition:all .2s;user-select:none"
+    el.textContent="❓"
+    el.onclick=()=>memFlip(i,el)
+    g.appendChild(el)
+  })
+}
+function memFlip(i,el){
+  if(memLocked||memCards[i].matched||memCards[i].flipped)return
+  memCards[i].flipped=true
+  el.textContent=memCards[i].e
+  el.style.background="rgba(255,107,43,.12)"
+  el.style.borderColor="rgba(255,107,43,.35)"
+  memFlipped.push({i,el})
+  if(memFlipped.length===2){
+    memLocked=true
+    const [a,b]=memFlipped
+    if(memCards[a.i].e===memCards[b.i].e){
+      memCards[a.i].matched=memCards[b.i].matched=true
+      a.el.style.background="rgba(0,200,80,.15)"
+      a.el.style.borderColor="rgba(0,200,80,.4)"
+      b.el.style.background="rgba(0,200,80,.15)"
+      b.el.style.borderColor="rgba(0,200,80,.4)"
+      memMatched++;document.getElementById("mem-score").textContent=memMatched
+      memFlipped=[];memLocked=false
+    } else {
+      setTimeout(()=>{
+        memCards[a.i].flipped=memCards[b.i].flipped=false
+        a.el.textContent="❓";b.el.textContent="❓"
+        a.el.style.background="var(--s1)";a.el.style.borderColor="var(--bd)"
+        b.el.style.background="var(--s1)";b.el.style.borderColor="var(--bd)"
+        memFlipped=[];memLocked=false
+      },900)
+    }
+  }
+}
+memInit()
 </script>
 </body>
 </html>
